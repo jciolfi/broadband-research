@@ -1,40 +1,69 @@
 import os, requests, json
 from dotenv import load_dotenv
 
-load_dotenv()
-
 BASE_URL = "https://atlas.ripe.net/api/v2"
-API_KEY = os.getenv("API_KEY")
+MEASUREMENTS = "measurements"
+API_KEY = None
 
-measurement_params = {
-    "definitions": [{
-        "target": "google.com",
-        "description": "Traceroute to google.com",
-        "type": "traceroute",
-        "af": 4,
-        "is_oneoff": True
-    }],
-    "probes": [{
-        "requested": 1, # 1 probe
-        "type": "area", # area type probe selector
-        "value": "WW" # worldwide
-    }]
-}
+def init():
+    load_dotenv()
+    global API_KEY
+    API_KEY = os.getenv("API_KEY")
+    if not API_KEY:
+        print("No Atlas API key found in .env!")
 
-headers = {
-    "Authorization": f"Key {API_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json"
-}
 
-response = requests.post(f"{BASE_URL}/measurements/", headers=headers, data=json.dumps(measurement_params))
+def get_measurement_id(headers):
+    measurement_params = {
+        "definitions": [{
+            "target": "google.com",
+            "description": "Traceroute to google.com",
+            "type": "traceroute",
+            "af": 4,
+            "is_oneoff": True
+        }],
+        "probes": [{
+            "requested": 1, # 1 probe
+            "type": "area", # area type probe selector
+            "value": "WW" # worldwide
+        }]
+    }
 
-if response.status_code != 201:
-    print("Failed to create measurement!")
-    exit(1)
+    response = requests.post(f"{BASE_URL}/{MEASUREMENTS}", headers=headers, data=json.dumps(measurement_params))
+    if response.status_code != 201:
+        return None
+    
+    try:
+        return response.json()[MEASUREMENTS][0]
+    except:
+        return None
 
-print("Measurement Successfully Created")
-measurement_result = response.json()
-measurement_id = measurement_result["measurements"][0]
 
-response = requests.get()
+def parse_measurement(measurement_id, headers):
+    if measurement_id is None:
+        print("Failed to create measurement!")
+        exit(1)
+
+    print("Measurement Successfully Created")
+    response = requests.get(f"{BASE_URL}/{MEASUREMENTS}/{measurement_id}/results", headers=headers)
+    
+    if response.status_code != 200:
+        print(f"Failed to retrieve measurement results for id {measurement_id}")
+        exit(1)
+
+    filename = "traceroute_result.json"
+    with open(filename, "w") as file:
+        json.dump(response.json(), file)
+        print(f"Successfully saved measurement results to {filename}!")
+
+
+
+if __name__ == "__main__":
+    headers = {
+        "Authorization": f"Key {API_KEY}",
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    }
+    # measurement_id = get_measurement_id(headers)
+    # parse_measurement(measurement_id, headers)
+    init()
