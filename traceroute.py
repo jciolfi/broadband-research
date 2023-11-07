@@ -1,5 +1,5 @@
 import os, requests, json, math
-from datetime import datetime
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
 BASE_URL = "https://atlas.ripe.net/api/v2"
@@ -26,6 +26,10 @@ def get_public_ip():
 def get_cur_timestamp_ms():
     cur_time = datetime.now().replace(second=0, microsecond=0)
     return int(cur_time.timestamp() * 1000)
+
+def get_cur_timef(delta_mins = 0):
+    cur_time = datetime.utcnow() + timedelta(minutes=delta_mins)
+    return cur_time.strftime("%Y-%m-%d %H:%M")
 
 
 def build_params(target, is_oneoff, interval_s = None, duration_mins = None, probes = None):
@@ -67,9 +71,12 @@ def build_params(target, is_oneoff, interval_s = None, duration_mins = None, pro
     params["is_oneoff"] = is_oneoff
     params["bill_to"] = "ciolfi.j@northeastern.edu"
     if not is_oneoff:
-        start_time = get_cur_timestamp_ms() + (1 * 60 * 1000)
-        params["start_time"] = start_time
-        params["stop_time"] = start_time + (duration_mins * 60 * 1000)
+        # start_time = get_cur_timestamp_ms() + (1 * 60 * 1000)
+        # params["start_time"] = start_time
+        # params["stop_time"] = start_time + (duration_mins * 60 * 1000)
+        params["start_time"] = get_cur_timef(2)
+        params["stop_time"] = get_cur_timef(duration_mins + 2)
+
 
     return params
     
