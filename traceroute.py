@@ -1,4 +1,5 @@
-import os, requests, json, time, math
+import os, requests, json, math
+from datetime import datetime
 from dotenv import load_dotenv
 
 BASE_URL = "https://atlas.ripe.net/api/v2"
@@ -23,9 +24,11 @@ def get_public_ip():
     return None
 
 def get_cur_timestamp_ms():
-    return int(math.ceil(time.time() * 1000))
+    cur_time = datetime.now().replace(second=0, microsecond=0)
+    return int(cur_time.timestamp() * 1000)
 
-def build_params(target, is_oneoff, interval_s = None, duration_ms = None, probes = None):
+
+def build_params(target, is_oneoff, interval_s = None, duration_mins = None, probes = None):
     params = {}
 
     # set definitions
@@ -36,7 +39,7 @@ def build_params(target, is_oneoff, interval_s = None, duration_ms = None, probe
         "description": f"Traceroute measurement to {target}",
         "resolve_on_probe": True,
         "response_timeout": 4000,
-        "protocol": "IMCP",
+        "protocol": "UDP",
         "packets": 3,
         "size": 48,
         "first_hop": 1,
@@ -64,13 +67,16 @@ def build_params(target, is_oneoff, interval_s = None, duration_ms = None, probe
     params["is_oneoff"] = is_oneoff
     params["bill_to"] = "ciolfi.j@northeastern.edu"
     if not is_oneoff:
-        params["stop_time"] = get_cur_timestamp_ms() + duration_ms
+        start_time = get_cur_timestamp_ms() + (1 * 60 * 1000)
+        params["start_time"] = start_time
+        params["stop_time"] = start_time + (duration_mins * 60 * 1000)
 
     return params
     
 
-def get_measurement_id(headers):
-    measurement_params = build_params(get_public_ip(), False, 3 * 60, 1 * 60 * 60 * 1000, None)
+def create_measurement(headers):
+    measurement_params = build_params(get_public_ip(), False, 3 * 60, 60, None)
+    print(measurement_params)
 
     response = requests.post(f"{BASE_URL}/{MEASUREMENTS}", headers=headers, data=json.dumps(measurement_params))
     if response.status_code != 201:
@@ -127,6 +133,7 @@ if __name__ == "__main__":
         "Content-Type": "application/json",
         "Accept": "application/json"
     }
-    measurement_id = get_measurement_id(headers)
+    measurement_id = create_measurement(headers)
+    print(measurement_id)
 
     # parse_measurement(measurement_id, headers)
