@@ -144,8 +144,22 @@ class Measurement:
         else:
             print(f"Successfully stopped measurement {measurement_id}!")
             
-    def format_measurement(self):
-        pass
+    def format_measurement(self, output_file, data_path):
+        with open(output_file, "w") as out_file:
+            with open(data_path, "r") as in_file:
+                traceroutes = json.load(in_file)
+                for t in traceroutes:
+                    out_file.write(f"Report for {t['src_addr']} -> {t['dst_addr']} ({t['dst_name']})\n")
+                    out_file.write(f"Protocol: {t['proto']}, Time: {datetime.utcfromtimestamp(t['endtime']).strftime('%Y-%m-%d %H:%M:%S UTC')}\n")
+                    
+                    for hop in t["result"]:
+                        out_file.write(f"  Hop {hop['hop']}:\n")
+                        for res in hop["result"]:
+                            if "from" in res:
+                                out_file.write(f"    IP: {res['from']}, RTT: {res['rtt']} ms, Size: {res['size']} bytes, TTL: {res['ttl']}\n")
+                            else:
+                                out_file.write(f"    * No results found\n")
+                    out_file.write("\n")
         
 
 
@@ -154,7 +168,9 @@ class Measurement:
 if __name__ == "__main__":
     m = Measurement()
 
-    # print(m.create_measurement(m.get_public_ip(), False, 3 * 60, 60, None))
+    # measurement_id = m.create_measurement(m.get_public_ip(), False, 3 * 60, 60, None)
+    # print(measurement_id)
 
-    measurement_id = 63359430
-    m.save_measurement(measurement_id, "73.219.241.3")
+    measurement_id, target = 63359430, "73.219.241.3"
+    # m.save_measurement(measurement_id, target)
+    m.format_measurement(f"report-{target}-{measurement_id}.txt", "traceroute-73.219.241.3-63359430.json")
