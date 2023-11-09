@@ -148,22 +148,35 @@ class Measurement:
         else:
             print(f"Successfully stopped measurement {measurement_id}!")
             
-    # create .txt report for a measurement report
+    # create .txt report for a measurement report with human-readable formatting
     def format_measurement(self, output_file, data_path):
         with open(output_file, "w") as out_file:
             with open(data_path, "r") as in_file:
                 traceroutes = json.load(in_file)
                 for t in traceroutes:
+                    # write header with info on traceroute
                     out_file.write(f"Report for {t['src_addr']} -> {t['dst_addr']} ({t['dst_name']})\n")
-                    out_file.write(f"Protocol: {t['proto']}, Time: {datetime.utcfromtimestamp(t['endtime']).strftime('%Y-%m-%d %H:%M:%S UTC')}\n")
+                    out_file.write(f"Protocol: {t['proto']} (IPv{t['af']}), Time: {datetime.utcfromtimestamp(t['endtime']).strftime('%Y-%m-%d %H:%M:%S UTC')}\n")
                     
                     for hop in t["result"]:
                         out_file.write(f"  Hop {hop['hop']}:\n")
-                        for res in hop["result"]:
+                        for pkt, res in enumerate(hop["result"]):
+                            out_file.write(f"    pkt {pkt + 1}: ")
                             if "from" in res:
-                                out_file.write(f"    IP: {res['from']}, RTT: {res['rtt']} ms, Size: {res['size']} bytes, TTL: {res['ttl']}\n")
+                                # base fields for every hop w/ measurement
+                                out_file.write(f"IP={res['from']}, RTT={res['rtt']} ms, TTL={res['ttl']}, Size={res['size']} B")
+
+                                # IP type of service
+                                if 'itos' in res: 
+                                    out_file.write(f", itos={res['itos']}")
+                                
+                                # ICMP extensions field
+                                if 'icmpext' in res:
+                                    res_icmp = res['icmpext']
+                                    out_file.write(f", ICMP: ver={res_icmp['version']}, rfc4884: {res_icmp['rfc4884']}, info={res_icmp['obj']}")
                             else:
-                                out_file.write(f"    * No results found\n")
+                                out_file.write(f"* No results found")
+                            out_file.write("\n")
                     out_file.write("\n")
         
 
