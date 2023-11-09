@@ -30,22 +30,24 @@ class Measurement:
             "Accept": "application/json"
         }
 
+    # get public IP for this machine
     def get_public_ip(self):
         response = requests.get('https://api.ipify.org')
         if response.status_code == 200:
             return response.text
         return None
     
+    # get timestamp in milliseconds ƒloored to the nearest minute
     def get_cur_timestamp_ms(self):
-        # round to nearest minute
         cur_time = datetime.now().replace(second=0, microsecond=0)
         return int(cur_time.timestamp() * 1000)
     
+    # get timestamp in YYYY-MM-DD HH:MM format
     def get_cur_timef(self, delta_mins = 0):
         cur_time = datetime.utcnow() + timedelta(minutes=delta_mins)
         return cur_time.strftime("%Y-%m-%d %H:%M")
     
-
+    # build params used to create a measurement
     def build_params(self, target, is_oneoff, interval_s = None, duration_mins = None, probes = None):
         params = {}
 
@@ -94,6 +96,7 @@ class Measurement:
 
         return params
     
+    # make a post request to create a measurement
     def create_measurement(self, target, is_oneoff = True, interval_s = None, duration_mins = None, probes = None):
         measurement_params = self.build_params(target, is_oneoff, interval_s, duration_mins, probes)
         print(measurement_params)
@@ -109,7 +112,7 @@ class Measurement:
         except:
             return None
         
-
+    # save measurement data to json
     def save_measurement(self, measurement_id, target):
         if measurement_id is None:
             print("Must specify measurement_id")
@@ -127,6 +130,7 @@ class Measurement:
             print(f"Successfully saved measurement results to {filename}!")
 
 
+    # make put request to stop an ongoing measurement
     def stop_measurement(self, measurement_id):
         stop_url = f"{self.base_url}/{self.measurements}/{measurement_id}"
 
@@ -144,6 +148,7 @@ class Measurement:
         else:
             print(f"Successfully stopped measurement {measurement_id}!")
             
+    # create .txt report for a measurement report
     def format_measurement(self, output_file, data_path):
         with open(output_file, "w") as out_file:
             with open(data_path, "r") as in_file:
@@ -169,7 +174,6 @@ if __name__ == "__main__":
     m = Measurement()
 
     # measurement_id = m.create_measurement(m.get_public_ip(), False, 3 * 60, 60, None)
-    # print(measurement_id)
 
     measurement_id, target = 63359430, "73.219.241.3"
     # m.save_measurement(measurement_id, target)
