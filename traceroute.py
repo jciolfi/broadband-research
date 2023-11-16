@@ -247,7 +247,6 @@ class Measurement:
                                 # handle icmp (not in every record)
                                 icmp_ver = icmp_rfc4884 = icmp_obj = ""
                                 if 'icmpext' in hop_info:
-                                    print('hi')
                                     icmpext = hop_info["icmpext"]
                                     icmp_ver = icmpext["version"]
                                     icmp_rfc4884 = icmpext["rfc4884"]
