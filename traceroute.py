@@ -1,4 +1,4 @@
-import os, requests, json, math
+import os, requests, json, csv
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
@@ -7,6 +7,19 @@ from dotenv import load_dotenv
 # API_KEY = None
 # TARGET = "google.com"
 # TARGET_ASN = "15169"
+
+
+"""
+TODO
+(in future): add rows/cols for cleaning json -> .csv file
+tool that translates mapping between IPs -> ASNs (bdrmapit)
+IP repeated across many boundaries
+
+launch traceroutes to targets (and other IPs in /24):
+target 2 IPs (one given, one random) and they go through different paths in /24 => model isn't sufficient (prefix-based)
+- 
+
+"""
 
 class Measurement:
     def __init__(self) -> None:
@@ -148,8 +161,30 @@ class Measurement:
         else:
             print(f"Successfully stopped measurement {measurement_id}!")
             
-    # create .txt report for a measurement report with human-readable formatting
+    def create_report_name(self, measurement_id, target, type):
+        filename = f"report-{target}-{measurement_id}.{type}"
+        if not os.path.exists(filename):
+            return filename
+        
+        version = 2
+        extension = filename.rfind(f".{type}")
+        while True:
+            test_filename = filename[:extension] + f"-{version}" + filename[extension:]
+            if not os.path.exists(test_filename):                
+                return test_filename
+            version += 1
+            
     def format_measurement(self, output_file, data_path):
+        filetype = output_file[output_file.rfind(".") + 1:]
+        if filetype == "txt":
+            self.format_measurement_txt(output_file, data_path)
+        elif filetype == "csv":
+            self.format_measurement_csv(output_file, data_path)
+        else:
+            raise NotImplementedError(f"No formatting implementation for {filetype} files exists.")
+            
+    # create .txt report for a measurement report with human-readable formatting
+    def format_measurement_txt(self, output_file, data_path):
         with open(output_file, "w") as out_file:
             with open(data_path, "r") as in_file:
                 traceroutes = json.load(in_file)
@@ -178,8 +213,29 @@ class Measurement:
                                 out_file.write(f"* No results found")
                             out_file.write("\n")
                     out_file.write("\n")
-        
-
+                    
+                    
+    def format_measurement_csv(self, output_file, data_path):
+        with open(output_file, "w") as out_file:
+            writer = csv.writer(out_file)
+            writer.writerow(["hop", "pkt", "ip_src", "ip_dst", "hop_ip", "RTT", "TTL", "size", "extras"])
+            with open(data_path, "r") as in_file:
+                traceroutes = json.load(in_file)
+                for traceroute in traceroutes:
+                    ip_dst = traceroute["dst_addr"]
+                    ip_src = traceroute["src_addr"]
+                    for hop_data in traceroute["result"]:
+                        hop = hop_data["hop"]
+                        for pkt, hop_info in enumerate(hop_data["result"]):
+                            try:
+                                hop_ip = hop_info["from"]
+                                ttl = hop_info["ttl"]
+                                size = hop_info["size"]
+                                rtt = hop_info["rtt"]
+                                writer.writerow([hop, pkt + 1, ip_src, ip_dst, hop_ip, rtt, ttl, size, ""])
+                            except KeyError:
+                                writer.writerow([hop, pkt + 1, ip_src, ip_dst, "*", "*", "*", "*", "*"])
+                    writer.writerow([])
 
 
 
@@ -190,4 +246,5 @@ if __name__ == "__main__":
 
     measurement_id, target = 63359430, "73.219.241.3"
     # m.save_measurement(measurement_id, target)
-    m.format_measurement(f"report-{target}-{measurement_id}.txt", "traceroute-73.219.241.3-63359430.json")
+    # m.format_measurement_txt(m.create_report_name(measurement_id, target, "txt"), "traceroute-73.219.241.3-63359430.json")
+    m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-73.219.241.3-63359430.json")
