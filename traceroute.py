@@ -218,23 +218,46 @@ class Measurement:
     def format_measurement_csv(self, output_file, data_path):
         with open(output_file, "w") as out_file:
             writer = csv.writer(out_file)
-            writer.writerow(["hop", "pkt", "ip_src", "ip_dst", "hop_ip", "RTT", "TTL", "size", "extras"])
+            # write header for flattened traceroute json data
+            writer.writerow(["hop", "pkt", "ip_src", "ip_dst", "hop_ip", "RTT", "TTL", "size", "itos", "icmp_ver", "icmp_rfc4884", "icmp_obj"])
             with open(data_path, "r") as in_file:
                 traceroutes = json.load(in_file)
                 for traceroute in traceroutes:
+                    # get ip src and dst for this traceroute
                     ip_dst = traceroute["dst_addr"]
                     ip_src = traceroute["src_addr"]
+                    
+                    # get hop datum for this traceroute
                     for hop_data in traceroute["result"]:
                         hop = hop_data["hop"]
+                        
+                        # get hop info for this hop
                         for pkt, hop_info in enumerate(hop_data["result"]):
                             try:
                                 hop_ip = hop_info["from"]
                                 ttl = hop_info["ttl"]
                                 size = hop_info["size"]
                                 rtt = hop_info["rtt"]
-                                writer.writerow([hop, pkt + 1, ip_src, ip_dst, hop_ip, rtt, ttl, size, ""])
+                                
+                                # handle itos (not in every record)
+                                itos = ""
+                                if "itos" in hop_info:
+                                    itos = hop_info["itos"]
+                                    
+                                # handle icmp (not in every record)
+                                icmp_ver = icmp_rfc4884 = icmp_obj = ""
+                                if 'icmpext' in hop_info:
+                                    print('hi')
+                                    icmpext = hop_info["icmpext"]
+                                    icmp_ver = icmpext["version"]
+                                    icmp_rfc4884 = icmpext["rfc4884"]
+                                    icmp_obj = icmpext["obj"]
+                                    
+                                writer.writerow([hop, pkt + 1, ip_src, ip_dst, hop_ip, rtt, ttl, size, itos, icmp_ver, icmp_rfc4884, icmp_obj])
                             except KeyError:
-                                writer.writerow([hop, pkt + 1, ip_src, ip_dst, "*", "*", "*", "*", "*"])
+                                writer.writerow([hop, pkt + 1, ip_src, ip_dst])
+                                
+                    # write extra row for spacing between traceroutes
                     writer.writerow([])
 
 
