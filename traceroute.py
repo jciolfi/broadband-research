@@ -1,7 +1,8 @@
-import os, requests, json, csv, ipaddress
+import os, requests, json, csv, ipaddress, sys
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from ipwhois import IPWhois
+from geopy.geocoders import Nominatim
 
 # BASE_URL = "https://atlas.ripe.net/api/v2"
 # MEASUREMENTS = "measurements"
@@ -21,9 +22,40 @@ target 2 IPs (one given, one random) and they go through different paths in /24 
 - 
 
 """
+class GeoIP:
+    def __init__(self, reader):
+        self.reader = reader
+        self.geolocator = Nominatim(user_agent="myGeocoder")
+
+    def get_lat_lon(self, ip):
+        data = self.reader.get(ip)
+        if not data:
+            return None
+        lat, lon = data['location']['latitude'], data['location']['longitude']
+        return (lat, lon)
+    
+    def get_label(self, lat_lon):
+        loc = self.geolocator.reverse(lat_lon)
+        if not loc:
+            return ""
+        
+        addr = loc.raw.get("address", {})
+        places = [
+            addr.get("city", ""),
+            addr.get("town", ""),
+            addr.get("state", ""),
+            addr.get("region", ""),
+            addr.get("country", ""),
+        ]
+        return ", ".join(filter(lambda x: x, places))   
+    
+    def get_location(self, ip):
+        return self.get_label(self.get_lat_lon(ip))
+    
+
 
 class Measurement:
-    def __init__(self) -> None:
+    def __init__(self):
         # set class-specific constants
         self.base_url = "https://atlas.ripe.net/api/v2"
         self.measurements = "measurements"
@@ -275,7 +307,7 @@ class Measurement:
         with open(output_file, "w") as out_file:
             writer = csv.writer(out_file)
             # write header for flattened traceroute json data
-            writer.writerow(["hop", "pkt", "ip_src", "ip_dst", "hop_ip", "ASN", "ASN_desc", "RTT", "TTL", "size", "itos", "icmp_ver", "icmp_rfc4884", "icmp_obj"])
+            writer.writerow(["hop", "pkt", "ip_src", "ip_dst", "hop_ip", "ASN", "ASN_desc", "loc", "RTT", "TTL", "size", "itos", "icmp_ver", "icmp_rfc4884", "icmp_obj"])
             with open(data_path, "r") as in_file:
                 traceroutes = json.load(in_file)
                 for traceroute in traceroutes:
@@ -293,6 +325,11 @@ class Measurement:
                                 # hop IP and ASN info
                                 hop_ip = hop_info["from"]
                                 asn, asn_desc = self.asn_from_ip(hop_ip, ip_mappings)
+                                
+                                # location if present
+                                with geoipdb.Reader("geoip.mmdb") as reader:
+                                    geoip = GeoIP(reader)
+                                    loc = str(geoip.get_lat_lon(hop_ip))
                                 
                                 # other properties
                                 ttl = hop_info["ttl"]
@@ -312,7 +349,7 @@ class Measurement:
                                     icmp_rfc4884 = icmpext["rfc4884"]
                                     icmp_obj = icmpext["obj"]
                                     
-                                writer.writerow([hop, pkt + 1, ip_src, ip_dst, hop_ip, asn, asn_desc, rtt, ttl, size, itos, icmp_ver, icmp_rfc4884, icmp_obj])
+                                writer.writerow([hop, pkt + 1, ip_src, ip_dst, hop_ip, asn, asn_desc, loc, rtt, ttl, size, itos, icmp_ver, icmp_rfc4884, icmp_obj])
                             except KeyError:
                                 writer.writerow([hop, pkt + 1, ip_src, ip_dst])
                                 
@@ -321,6 +358,8 @@ class Measurement:
 
 
 if __name__ == "__main__":
+    sys.path.append(os.path.dirname('./vendor/geoipdb'))
+    import geoipdb
     m = Measurement()
 
     # print(m.create_measurement("chemeketa.edu")) # -> target IP is 15.197.180.139
@@ -339,6 +378,6 @@ if __name__ == "__main__":
     # For test measurement (3 min interval, 60 mins long, to personal public IP from closeby probes)
     # print(m.create_measurement(m.get_public_ip(), False, 3 * 60, 60, None))
     measurement_id, target = 63359430, "73.219.241.3"
-    # m.save_measurement(measurement_id, target)
-    # m.format_measurement_txt(m.create_report_name(measurement_id, target, "txt"), "traceroute-73.219.241.3-63359430.json")
     m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-73.219.241.3-63359430.json")
+    # m.format_measurement_txt(m.create_report_name(measurement_id, target, "txt"), "traceroute-73.219.241.3-63359430.json")
+    # m.save_measurement(measurement_id, target)
