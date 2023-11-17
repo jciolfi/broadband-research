@@ -24,15 +24,18 @@ target 2 IPs (one given, one random) and they go through different paths in /24 
 
 class Measurement:
     def __init__(self) -> None:
-        load_dotenv()
+        # set class-specific constants
         self.base_url = "https://atlas.ripe.net/api/v2"
         self.measurements = "measurements"
 
+        # extract API keys from env
+        load_dotenv()
         self.api_key_create = os.getenv("API_KEY_CREATE")
         self.api_key_stop = os.getenv("API_KEY_STOP")
         if not self.api_key_create and not self.api_key_stop:
             raise EnvironmentError("Please set an environment variable for API_KEY_CREATE and/or API_KEY_STOP in .env")
 
+        # create headers to go along with requests
         self.create_headers = {
             "Authorization": f"Key {self.api_key_create}",
             "Content-Type": "application/json",
@@ -44,6 +47,7 @@ class Measurement:
             "Accept": "application/json"
         }
 
+
     # get public IP for this machine
     def get_public_ip(self):
         response = requests.get('https://api.ipify.org')
@@ -51,15 +55,18 @@ class Measurement:
             return response.text
         return None
     
+    
     # get timestamp in milliseconds ƒloored to the nearest minute
     def get_cur_timestamp_ms(self):
         cur_time = datetime.now().replace(second=0, microsecond=0)
         return int(cur_time.timestamp() * 1000)
     
+    
     # get timestamp in YYYY-MM-DD HH:MM format
     def get_cur_timef(self, delta_mins = 0):
         cur_time = datetime.utcnow() + timedelta(minutes=delta_mins)
         return cur_time.strftime("%Y-%m-%d %H:%M")
+    
     
     # build params used to create a measurement
     def build_params(self, target, is_oneoff, interval_s = None, duration_mins = None, probes = None):
@@ -96,7 +103,7 @@ class Measurement:
                 "requested": 1
             }]
 
-        # set other attributes
+        # set billing and if measurement is ongoing/one-off
         params["is_oneoff"] = is_oneoff
         params["bill_to"] = "ciolfi.j@northeastern.edu"
         if not is_oneoff:            
@@ -107,13 +114,14 @@ class Measurement:
             # params["start_time"] = start_time
             # params["stop_time"] = start_time + (duration_mins * 60 * 1000)
 
-
         return params
+    
     
     # confirm starting a measurement
     def confirm_measurement(self, params):
         choice = input(f"\nStart measurement with the following params?\n{params}\n\n(yes/no):").strip().lower()
         return choice == "yes"
+    
     
     # make a post request to create a measurement
     def create_measurement(self, target, is_oneoff = True, interval_s = None, duration_mins = None, probes = None):
@@ -131,6 +139,7 @@ class Measurement:
             return response.json()[self.measurements][0]
         except:
             return None
+        
         
     # save measurement data to json
     def save_measurement(self, measurement_id, target):
@@ -167,7 +176,9 @@ class Measurement:
             print(f"Failed to stop measurement {measurement_id}. Response: {response.text}")
         else:
             print(f"Successfully stopped measurement {measurement_id}!")
-            
+    
+    
+    # create report name by continually incrementing version to not overwrite existing reports.
     def create_report_name(self, measurement_id, target, type):
         filename = f"report-{target}-{measurement_id}.{type}"
         if not os.path.exists(filename):
@@ -181,9 +192,10 @@ class Measurement:
                 return test_filename
             version += 1
     
+    
     # add layer of delegation for formatting measurements
     def format_measurement(self, output_file, data_path):
-        print("Loading...")
+        print("Formatting measurement...")
         filetype = output_file[output_file.rfind(".") + 1:]
         if filetype == "txt":
             self.format_measurement_txt(output_file, data_path)
@@ -192,7 +204,8 @@ class Measurement:
         else:
             raise NotImplementedError(f"No formatting implementation for {filetype} files exists.")
 
-        print(f"Report saved to {output_file}")
+        print(f"Report saved to {output_file}!")
+            
             
     # create .txt report for a measurement report with human-readable formatting
     def format_measurement_txt(self, output_file, data_path):
@@ -224,8 +237,9 @@ class Measurement:
                                 out_file.write(f"* No results found")
                             out_file.write("\n")
                     out_file.write("\n")
+               
                     
-    
+    # check if this ip is in the reserved private IP ranges.
     def is_private_ip(self, ip):
         _ip = ipaddress.ip_address(ip)
         private_ranges = (
@@ -235,6 +249,8 @@ class Measurement:
         )
         return any(_ip in priv_range for priv_range in private_ranges)
     
+    
+    # try to get ASN associated with this IP
     def asn_from_ip(self, ip, cache):
         asn, asn_desc = "", ""
         try:
@@ -250,8 +266,9 @@ class Measurement:
             print(f"Could not find ASN for {ip}: {e}")
         
         return asn, asn_desc
+                   
                     
-                    
+    # format raw json measurement details to a more readable csv format
     def format_measurement_csv(self, output_file, data_path):
         ip_mappings = {}
         
@@ -301,7 +318,6 @@ class Measurement:
                                 
                     # write extra row for spacing between traceroutes
                     writer.writerow([" "])
-
 
 
 if __name__ == "__main__":
