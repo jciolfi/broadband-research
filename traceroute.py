@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from ipwhois import IPWhois
 from geopy.geocoders import Nominatim
+import geoip2.database
 
 # BASE_URL = "https://atlas.ripe.net/api/v2"
 # MEASUREMENTS = "measurements"
@@ -23,36 +24,21 @@ target 2 IPs (one given, one random) and they go through different paths in /24 
 
 """
 class GeoIP:
-    def __init__(self, reader):
-        self.reader = reader
-        self.geolocator = Nominatim(user_agent="jinco")
-
-    def get_lat_lon(self, ip):
-        data = self.reader.get(ip)
-        if not data:
-            return None
-        lat, lon = data['location']['latitude'], data['location']['longitude']
-        return (lat, lon)
-    
-    def get_label(self, lat_lon):
-        loc = self.geolocator.reverse(lat_lon)
-        if not loc:
+    def get_location(self, ip, cache):
+        try:
+            if ip in cache:
+                return cache[ip]
+            with geoip2.database.Reader("geoip.mmdb") as reader:
+                response = reader.city(ip)
+                country = response.country.name
+                city = response.city.name
+                subdivs = ", ".join(map(lambda x: x.name, response.subdivisions))
+                location = ", ".join((city, subdivs, country))
+                cache[ip] = location
+                return location
+        except:
             return ""
         
-        addr = loc.raw.get("address", {})
-        places = [
-            addr.get("city", ""),
-            addr.get("town", ""),
-            addr.get("state", ""),
-            addr.get("region", ""),
-            addr.get("country", ""),
-        ]
-        return ", ".join(filter(lambda x: x, places))   
-    
-    def get_location(self, ip):
-        return self.get_label(self.get_lat_lon(ip))
-    
-
 
 class Measurement:
     def __init__(self):
@@ -286,14 +272,13 @@ class Measurement:
     def asn_from_ip(self, ip, cache):
         asn, asn_desc = "", ""
         try:
-            if not self.is_private_ip(ip):
-                if ip in cache:
-                    asn, asn_desc = cache[ip]
-                else:
-                    _ipwhois = IPWhois(ip)
-                    asn_data = _ipwhois.lookup_rdap()
-                    asn, asn_desc = asn_data["asn"], asn_data["asn_description"]
-                    cache[ip] = (asn, asn_desc)
+            if ip in cache:
+                asn, asn_desc = cache[ip]
+            else:
+                _ipwhois = IPWhois(ip)
+                asn_data = _ipwhois.lookup_rdap()
+                asn, asn_desc = asn_data["asn"], asn_data["asn_description"]
+                cache[ip] = (asn, asn_desc)
         except Exception as e:
             print(f"Could not find ASN for {ip}: {e}")
         
@@ -302,7 +287,9 @@ class Measurement:
                     
     # format raw json measurement details to a more readable csv format
     def format_measurement_csv(self, output_file, data_path):
-        ip_mappings = {}
+        ip_asn_cache = {}
+        ip_loc_cache = {}
+        geoip = GeoIP()
         
         with open(output_file, "w") as out_file:
             writer = csv.writer(out_file)
@@ -324,13 +311,10 @@ class Measurement:
                             try:
                                 # hop IP and ASN info
                                 hop_ip = hop_info["from"]
-                                asn, asn_desc = self.asn_from_ip(hop_ip, ip_mappings)
-                                
-                                # location if present
-                                with geoipdb.Reader("geoip.mmdb") as reader:
-                                    geoip = GeoIP(reader)
-                                    # loc = str(geoip.get_lat_lon(hop_ip))
-                                    loc = str(geoip.get_location(hop_ip))
+                                asn = asn_desc = loc = ""
+                                if not self.is_private_ip(hop_ip):
+                                    asn, asn_desc = self.asn_from_ip(hop_ip, ip_asn_cache)
+                                    loc = geoip.get_location(hop_ip, ip_loc_cache)                               
                                 
                                 # other properties
                                 ttl = hop_info["ttl"]
@@ -359,8 +343,6 @@ class Measurement:
 
 
 if __name__ == "__main__":
-    sys.path.append(os.path.dirname('./vendor/geoipdb'))
-    import geoipdb
     m = Measurement()
 
     # print(m.create_measurement("chemeketa.edu")) # -> target IP is 15.197.180.139
