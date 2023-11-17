@@ -1,4 +1,4 @@
-import os, requests, json, csv, ipaddress, sys
+import os, requests, json, csv, ipaddress, sys, time
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from ipwhois import IPWhois
@@ -25,7 +25,7 @@ target 2 IPs (one given, one random) and they go through different paths in /24 
 class GeoIP:
     def __init__(self, reader):
         self.reader = reader
-        self.geolocator = Nominatim(user_agent="myGeocoder")
+        self.geolocator = Nominatim(user_agent="jinco")
 
     def get_lat_lon(self, ip):
         data = self.reader.get(ip)
@@ -329,7 +329,8 @@ class Measurement:
                                 # location if present
                                 with geoipdb.Reader("geoip.mmdb") as reader:
                                     geoip = GeoIP(reader)
-                                    loc = str(geoip.get_lat_lon(hop_ip))
+                                    # loc = str(geoip.get_lat_lon(hop_ip))
+                                    loc = str(geoip.get_location(hop_ip))
                                 
                                 # other properties
                                 ttl = hop_info["ttl"]
@@ -377,7 +378,9 @@ if __name__ == "__main__":
 
     # For test measurement (3 min interval, 60 mins long, to personal public IP from closeby probes)
     # print(m.create_measurement(m.get_public_ip(), False, 3 * 60, 60, None))
-    measurement_id, target = 63359430, "73.219.241.3"
-    m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-73.219.241.3-63359430.json")
+    # measurement_id, target = 63359430, "73.219.241.3"
+    measurement_id, target = 61056514, "google.com"
+    # m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-73.219.241.3-63359430.json")
+    m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-google.com-61056514.json")
     # m.format_measurement_txt(m.create_report_name(measurement_id, target, "txt"), "traceroute-73.219.241.3-63359430.json")
     # m.save_measurement(measurement_id, target)
