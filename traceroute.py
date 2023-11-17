@@ -175,6 +175,8 @@ class Measurement:
         with open(filename, "w") as file:
             json.dump(response.json(), file)
             print(f"Successfully saved measurement results to {filename}!")
+            
+        return filename
 
 
     # make put request to stop an ongoing measurement
@@ -198,7 +200,7 @@ class Measurement:
     
     # create report name by continually incrementing version to not overwrite existing reports.
     def create_report_name(self, measurement_id, target, type):
-        filename = f"report-{target}-{measurement_id}.{type}"
+        filename = f"reports/report-{target}-{measurement_id}.{type}"
         if not os.path.exists(filename):
             return filename
         
@@ -283,8 +285,40 @@ class Measurement:
             print(f"Could not find ASN for {ip}: {e}")
         
         return asn, asn_desc
-                   
-                    
+    
+    
+    def extract_hop_info(self, hop_info, ip_asn_cache, ip_loc_cache, geoip):
+        try:
+            # hop IP and ASN info
+            hop_ip = hop_info["from"]
+            asn = asn_desc = loc = ""
+            if not self.is_private_ip(hop_ip):
+                asn, asn_desc = self.asn_from_ip(hop_ip, ip_asn_cache)
+                loc = geoip.get_location(hop_ip, ip_loc_cache)                               
+            
+            # other properties
+            ttl = hop_info["ttl"]
+            size = hop_info["size"]
+            rtt = hop_info["rtt"]
+            
+            # handle itos (not in every record)
+            itos = ""
+            if "itos" in hop_info:
+                itos = hop_info["itos"]
+                
+            # handle icmp (not in every record)
+            icmp_ver = icmp_rfc4884 = icmp_obj = ""
+            if 'icmpext' in hop_info:
+                icmpext = hop_info["icmpext"]
+                icmp_ver = icmpext["version"]
+                icmp_rfc4884 = icmpext["rfc4884"]
+                icmp_obj = icmpext["obj"]
+                
+            return [hop_ip, asn, asn_desc, loc, rtt, ttl, size, itos, icmp_ver, icmp_rfc4884, icmp_obj]
+        except KeyError:
+            return []
+                 
+       
     # format raw json measurement details to a more readable csv format
     def format_measurement_csv(self, output_file, data_path):
         ip_asn_cache = {}
@@ -308,38 +342,18 @@ class Measurement:
                         
                         # get hop info for this hop
                         for pkt, hop_info in enumerate(hop_data["result"]):
-                            try:
-                                # hop IP and ASN info
-                                hop_ip = hop_info["from"]
-                                asn = asn_desc = loc = ""
-                                if not self.is_private_ip(hop_ip):
-                                    asn, asn_desc = self.asn_from_ip(hop_ip, ip_asn_cache)
-                                    loc = geoip.get_location(hop_ip, ip_loc_cache)                               
-                                
-                                # other properties
-                                ttl = hop_info["ttl"]
-                                size = hop_info["size"]
-                                rtt = hop_info["rtt"]
-                                
-                                # handle itos (not in every record)
-                                itos = ""
-                                if "itos" in hop_info:
-                                    itos = hop_info["itos"]
-                                    
-                                # handle icmp (not in every record)
-                                icmp_ver = icmp_rfc4884 = icmp_obj = ""
-                                if 'icmpext' in hop_info:
-                                    icmpext = hop_info["icmpext"]
-                                    icmp_ver = icmpext["version"]
-                                    icmp_rfc4884 = icmpext["rfc4884"]
-                                    icmp_obj = icmpext["obj"]
-                                    
-                                writer.writerow([hop, pkt + 1, ip_src, ip_dst, hop_ip, asn, asn_desc, loc, rtt, ttl, size, itos, icmp_ver, icmp_rfc4884, icmp_obj])
-                            except KeyError:
-                                writer.writerow([hop, pkt + 1, ip_src, ip_dst])
+                            writer.writerow([hop, pkt + 1, ip_src, ip_dst] + self.extract_hop_info(hop_info, ip_asn_cache, ip_loc_cache, geoip))
                                 
                     # write extra row for spacing between traceroutes
                     writer.writerow([" "])
+    
+    
+    # generate a report with the given measurement_id and target
+    def extract_data_and_report(self, measurement_id, target):
+        data_path = self.save_measurement(measurement_id, target)
+        report_name = self.create_report_name(measurement_id, target, 'csv')
+        
+        self.format_measurement(report_name, data_path)
 
 
 if __name__ == "__main__":
@@ -361,8 +375,14 @@ if __name__ == "__main__":
     # For test measurement (3 min interval, 60 mins long, to personal public IP from closeby probes)
     # print(m.create_measurement(m.get_public_ip(), False, 3 * 60, 60, None))
     # measurement_id, target = 63359430, "73.219.241.3"
-    measurement_id, target = 61056514, "google.com"
+    # measurement_id, target = 61056514, "google.com"
     # m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-73.219.241.3-63359430.json")
-    m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-google.com-61056514.json")
+    # m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-google.com-61056514.json")
     # m.format_measurement_txt(m.create_report_name(measurement_id, target, "txt"), "traceroute-73.219.241.3-63359430.json")
-    # m.save_measurement(measurement_id, target)
+    
+    # measurement_id, target = "63729110", "15.197.180.139_(chemeketa.edu)"
+    # measurement_id, target = "63729112", "15.197.180.1_(Amazon)"
+    # measurement_id, target = "63728978", "162.159.135.49_(k12espanola.org)"
+    measurement_id, target_name = "63728956", "162.159.135.1_(Cloudflare)"
+    m.extract_data_and_report(measurement_id, target_name)
+    
