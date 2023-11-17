@@ -82,8 +82,7 @@ class Measurement:
             "destination_option_size": 0,
             "hop_by_hop_option_size": 0,
             "dont_fragment": False,
-            "skip_dns_check": False,
-            "interval": interval_s if interval_s else 900 # 900 is the default interval
+            "skip_dns_check": False
         }]
 
         # set probes
@@ -100,12 +99,13 @@ class Measurement:
         # set other attributes
         params["is_oneoff"] = is_oneoff
         params["bill_to"] = "ciolfi.j@northeastern.edu"
-        if not is_oneoff:
+        if not is_oneoff:            
+            params["interval"] = interval_s if interval_s else 900 # 900 is the default interval
+            params["start_time"] = self.get_cur_timef(2)
+            params["stop_time"] = self.get_cur_timef(duration_mins + 2)
             # start_time = get_cur_timestamp_ms() + (1 * 60 * 1000)
             # params["start_time"] = start_time
             # params["stop_time"] = start_time + (duration_mins * 60 * 1000)
-            params["start_time"] = self.get_cur_timef(2)
-            params["stop_time"] = self.get_cur_timef(duration_mins + 2)
 
 
         return params
@@ -292,9 +292,13 @@ class Measurement:
 if __name__ == "__main__":
     m = Measurement()
 
-    # measurement_id = m.create_measurement(m.get_public_ip(), False, 3 * 60, 60, None)
+    # print(m.create_measurement("chemeketa.edu"))
+    
+    # print(m.create_measurement("k12espanola.org"))
 
-    measurement_id, target = 63359430, "73.219.241.3"
+    # For test measurement (3 min interval, 60 mins long, to personal public IP from closeby probes)
+    # print(m.create_measurement(m.get_public_ip(), False, 3 * 60, 60, None))
+    # measurement_id, target = 63359430, "73.219.241.3"
     # m.save_measurement(measurement_id, target)
     # m.format_measurement_txt(m.create_report_name(measurement_id, target, "txt"), "traceroute-73.219.241.3-63359430.json")
-    m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-73.219.241.3-63359430.json")
+    # m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-73.219.241.3-63359430.json")
