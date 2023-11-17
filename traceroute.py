@@ -1,6 +1,7 @@
-import os, requests, json, csv
+import os, requests, json, csv, ipaddress
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
+from ipwhois import IPWhois
 
 # BASE_URL = "https://atlas.ripe.net/api/v2"
 # MEASUREMENTS = "measurements"
@@ -214,12 +215,24 @@ class Measurement:
                             out_file.write("\n")
                     out_file.write("\n")
                     
+    
+    def is_private_ip(self, ip):
+        _ip = ipaddress.ip_address(ip)
+        private_ranges = (
+            ipaddress.ip_network("10.0.0.0/8"),
+            ipaddress.ip_network("172.16.0.0/12"),
+            ipaddress.ip_network("192.168.0.0/16")
+        )
+        return any(_ip in priv_range for priv_range in private_ranges)
+                    
                     
     def format_measurement_csv(self, output_file, data_path):
+        ip_mappings = {}
+        
         with open(output_file, "w") as out_file:
             writer = csv.writer(out_file)
             # write header for flattened traceroute json data
-            writer.writerow(["hop", "pkt", "ip_src", "ip_dst", "hop_ip", "RTT", "TTL", "size", "itos", "icmp_ver", "icmp_rfc4884", "icmp_obj"])
+            writer.writerow(["hop", "pkt", "ip_src", "ip_dst", "hop_ip", "ASN", "ASN_desc", "RTT", "TTL", "size", "itos", "icmp_ver", "icmp_rfc4884", "icmp_obj"])
             with open(data_path, "r") as in_file:
                 traceroutes = json.load(in_file)
                 for traceroute in traceroutes:
@@ -234,7 +247,22 @@ class Measurement:
                         # get hop info for this hop
                         for pkt, hop_info in enumerate(hop_data["result"]):
                             try:
+                                # hop IP and ASN info
                                 hop_ip = hop_info["from"]
+                                asn, asn_desc = "", ""
+                                try:
+                                    if not self.is_private_ip(hop_ip):
+                                        if hop_ip in ip_mappings:
+                                            asn, asn_desc = ip_mappings[hop_ip]
+                                        else:
+                                            _ipwhois = IPWhois(hop_ip)
+                                            asn_data = _ipwhois.lookup_rdap()
+                                            asn, asn_desc = asn_data["asn"], asn_data["asn_description"]
+                                            ip_mappings[hop_ip] = (asn, asn_desc)
+                                except Exception as e:
+                                    print(f"Could not find ASN for {hop_ip}: {e}")
+                                
+                                # other properties
                                 ttl = hop_info["ttl"]
                                 size = hop_info["size"]
                                 rtt = hop_info["rtt"]
@@ -252,7 +280,7 @@ class Measurement:
                                     icmp_rfc4884 = icmpext["rfc4884"]
                                     icmp_obj = icmpext["obj"]
                                     
-                                writer.writerow([hop, pkt + 1, ip_src, ip_dst, hop_ip, rtt, ttl, size, itos, icmp_ver, icmp_rfc4884, icmp_obj])
+                                writer.writerow([hop, pkt + 1, ip_src, ip_dst, hop_ip, asn, asn_desc, rtt, ttl, size, itos, icmp_ver, icmp_rfc4884, icmp_obj])
                             except KeyError:
                                 writer.writerow([hop, pkt + 1, ip_src, ip_dst])
                                 
