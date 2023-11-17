@@ -100,7 +100,7 @@ class Measurement:
         params["is_oneoff"] = is_oneoff
         params["bill_to"] = "ciolfi.j@northeastern.edu"
         if not is_oneoff:            
-            params["interval"] = interval_s if interval_s else 900 # 900 is the default interval
+            params["definitions"][0]["interval"] = interval_s if interval_s else 900 # 900 is the default interval
             params["start_time"] = self.get_cur_timef(2)
             params["stop_time"] = self.get_cur_timef(duration_mins + 2)
             # start_time = get_cur_timestamp_ms() + (1 * 60 * 1000)
@@ -110,10 +110,16 @@ class Measurement:
 
         return params
     
+    # confirm starting a measurement
+    def confirm_measurement(self, params):
+        choice = input(f"\nStart measurement with the following params?\n{params}\n\n(yes/no):").strip().lower()
+        return choice == "yes"
+    
     # make a post request to create a measurement
     def create_measurement(self, target, is_oneoff = True, interval_s = None, duration_mins = None, probes = None):
         measurement_params = self.build_params(target, is_oneoff, interval_s, duration_mins, probes)
-        print(measurement_params)
+        if not self.confirm_measurement(measurement_params):
+            return None
 
         response = requests.post(f"{self.base_url}/{self.measurements}", headers=self.create_headers, data=json.dumps(measurement_params))
         if response.status_code != 201:
@@ -174,8 +180,10 @@ class Measurement:
             if not os.path.exists(test_filename):                
                 return test_filename
             version += 1
-            
+    
+    # add layer of delegation for formatting measurements
     def format_measurement(self, output_file, data_path):
+        print("Loading...")
         filetype = output_file[output_file.rfind(".") + 1:]
         if filetype == "txt":
             self.format_measurement_txt(output_file, data_path)
@@ -183,6 +191,8 @@ class Measurement:
             self.format_measurement_csv(output_file, data_path)
         else:
             raise NotImplementedError(f"No formatting implementation for {filetype} files exists.")
+
+        print(f"Report saved to {output_file}")
             
     # create .txt report for a measurement report with human-readable formatting
     def format_measurement_txt(self, output_file, data_path):
@@ -224,6 +234,22 @@ class Measurement:
             ipaddress.ip_network("192.168.0.0/16")
         )
         return any(_ip in priv_range for priv_range in private_ranges)
+    
+    def asn_from_ip(self, ip, cache):
+        asn, asn_desc = "", ""
+        try:
+            if not self.is_private_ip(ip):
+                if ip in cache:
+                    asn, asn_desc = cache[ip]
+                else:
+                    _ipwhois = IPWhois(ip)
+                    asn_data = _ipwhois.lookup_rdap()
+                    asn, asn_desc = asn_data["asn"], asn_data["asn_description"]
+                    cache[ip] = (asn, asn_desc)
+        except Exception as e:
+            print(f"Could not find ASN for {ip}: {e}")
+        
+        return asn, asn_desc
                     
                     
     def format_measurement_csv(self, output_file, data_path):
@@ -249,18 +275,7 @@ class Measurement:
                             try:
                                 # hop IP and ASN info
                                 hop_ip = hop_info["from"]
-                                asn, asn_desc = "", ""
-                                try:
-                                    if not self.is_private_ip(hop_ip):
-                                        if hop_ip in ip_mappings:
-                                            asn, asn_desc = ip_mappings[hop_ip]
-                                        else:
-                                            _ipwhois = IPWhois(hop_ip)
-                                            asn_data = _ipwhois.lookup_rdap()
-                                            asn, asn_desc = asn_data["asn"], asn_data["asn_description"]
-                                            ip_mappings[hop_ip] = (asn, asn_desc)
-                                except Exception as e:
-                                    print(f"Could not find ASN for {hop_ip}: {e}")
+                                asn, asn_desc = self.asn_from_ip(hop_ip, ip_mappings)
                                 
                                 # other properties
                                 ttl = hop_info["ttl"]
@@ -285,20 +300,29 @@ class Measurement:
                                 writer.writerow([hop, pkt + 1, ip_src, ip_dst])
                                 
                     # write extra row for spacing between traceroutes
-                    writer.writerow([])
+                    writer.writerow([" "])
 
 
 
 if __name__ == "__main__":
     m = Measurement()
 
-    # print(m.create_measurement("chemeketa.edu"))
+    # print(m.create_measurement("chemeketa.edu")) # -> target IP is 15.197.180.139
+    # 15.197.180.1 is Amazon: ('16509', 'AMAZON-02, US')
+    # WEST COAST (WA, Seattle)
+    # print(m.create_measurement("15.197.180.139", False, 2 * 60, 20, None))
+    # print(m.create_measurement("15.197.180.1", False, 2 * 60, 20, None))
     
-    # print(m.create_measurement("k12espanola.org"))
+    
+    # print(m.create_measurement("k12espanola.org")) # -> target IP is 162.159.135.49
+    # WEST COAST (CA, San Francisco)
+    # 162.159.135.49 is k12, 162.159.135.1 is cloudflare: ('13335', 'CLOUDFLARENET, US')
+    # print(m.create_measurement("162.159.135.1", False, 2 * 60, 20, None))
+    # print(m.create_measurement("162.159.135.49", False, 2 * 60, 20, None))
 
     # For test measurement (3 min interval, 60 mins long, to personal public IP from closeby probes)
     # print(m.create_measurement(m.get_public_ip(), False, 3 * 60, 60, None))
-    # measurement_id, target = 63359430, "73.219.241.3"
+    measurement_id, target = 63359430, "73.219.241.3"
     # m.save_measurement(measurement_id, target)
     # m.format_measurement_txt(m.create_report_name(measurement_id, target, "txt"), "traceroute-73.219.241.3-63359430.json")
-    # m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-73.219.241.3-63359430.json")
+    m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-73.219.241.3-63359430.json")
