@@ -1,9 +1,11 @@
-import os, requests, json, csv, ipaddress, sys, time
+import os, requests, json, csv, ipaddress, random
+import pandas as pd
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from ipwhois import IPWhois
 from geopy.geocoders import Nominatim
 import geoip2.database
+import probes
 
 # BASE_URL = "https://atlas.ripe.net/api/v2"
 # MEASUREMENTS = "measurements"
@@ -115,11 +117,7 @@ class Measurement:
             params["probes"] = probes
         else: 
             # default to three probes close to Northeastern University
-            params["probes"] = [{
-                "type": "probes",
-                "value": "15763,1005127,6899",
-                "requested": 1
-            }]
+            params["probes"] = probes.SINGLE_BOSTON
 
         # set billing and if measurement is ongoing/one-off
         params["is_oneoff"] = is_oneoff
@@ -138,7 +136,7 @@ class Measurement:
     # confirm starting a measurement
     def confirm_measurement(self, params):
         choice = input(f"\nStart measurement with the following params?\n{params}\n\n(yes/no):").strip().lower()
-        return choice == "yes"
+        return choice in ("yes", "y")
     
     
     # make a post request to create a measurement
@@ -287,6 +285,7 @@ class Measurement:
         return asn, asn_desc
     
     
+    # extract hop info from a traceroute hop object
     def extract_hop_info(self, hop_info, ip_asn_cache, ip_loc_cache, geoip):
         try:
             # hop IP and ASN info
@@ -354,13 +353,53 @@ class Measurement:
         report_name = self.create_report_name(measurement_id, target, 'csv')
         
         self.format_measurement(report_name, data_path)
-
+        
+    
+    # bulk launch one-off traceroutes for domains in domains.csv from [start_row, end_row] inclusive
+    # only launch if IP is blank (nan)
+    def bulk_one_off(self, start_row, end_row):
+        num_domains = end_row - start_row
+        df = pd.read_csv("domains.csv", skiprows=range(1, start_row), nrows=num_domains)
+        for _, row in df.iterrows():
+            if pd.isna(row["IP"]):
+                m.create_measurement(row["Domain"], probe=probes.SINGLE_BOSTON)
+    
+    
+    # get neighbor ip in same /24 range
+    def get_neighbor_ip_24(self, ip):
+        last_octet = ip.rfind(".")
+        last_val = int(ip[last_octet+1:])
+        while (rand_val := random.randint(1,254)) == last_val:
+            pass
+        
+        return f"{ip[:last_octet]}.{rand_val}"
+    
+    
+    # start measurement for given IP and find a random neighbor. Also update domains.csv.
+    def start_dual_measurements(self, row_num, _interval_s, _duration_mins, _probes):
+        # extract data from domains.csv
+        df = pd.read_csv("domains.csv", dtype={"msmt_id": str, "neighbor_msmt_id": str})
+        row_idx = row_num - 2
+        row = df.iloc[row_idx]
+        ip = row["IP"]
+        neighbor_ip = self.get_neighbor_ip_24(ip)
+        
+        # start measurements
+        msmt_id = self.create_measurement(ip, is_oneoff=False, interval_s=_interval_s, duration_mins=_duration_mins , probes=_probes)
+        neighbor_msmt_id = self.create_measurement(neighbor_ip, is_oneoff=False, interval_s=_interval_s, duration_mins=_duration_mins , probes=_probes)
+        
+        # update domains.csv
+        df.at[row_idx, "msmt_id"] = msmt_id
+        df.at[row_idx, "Neighbor_IP"] = neighbor_ip
+        df.at[row_idx, "neighbor_msmt_id"] = neighbor_msmt_id
+        df.to_csv("domains.csv", index=False)
+            
 
 if __name__ == "__main__":
     m = Measurement()
 
-    # print(m.create_measurement("chemeketa.edu")) # -> target IP is 15.197.180.139
-    # 15.197.180.1 is Amazon: ('16509', 'AMAZON-02, US')
+    # print(m.create_measurement("chemeketa.edu")) # -> targetand w IP is 15.197.180.139
+    # 15.197.180.1 owned by Amazon: ('16509', 'AMAZON-02, US')
     # WEST COAST (WA, Seattle)
     # print(m.create_measurement("15.197.180.139", False, 2 * 60, 20, None))
     # print(m.create_measurement("15.197.180.1", False, 2 * 60, 20, None))
@@ -383,6 +422,7 @@ if __name__ == "__main__":
     # measurement_id, target = "63729110", "15.197.180.139_(chemeketa.edu)"
     # measurement_id, target = "63729112", "15.197.180.1_(Amazon)"
     # measurement_id, target = "63728978", "162.159.135.49_(k12espanola.org)"
-    measurement_id, target_name = "63728956", "162.159.135.1_(Cloudflare)"
-    m.extract_data_and_report(measurement_id, target_name)
+    # measurement_id, target_name = "63728956", "162.159.135.1_(Cloudflare)"
+    # m.extract_data_and_report(measurement_id, target_name)
     
+    m.start_dual_measurements(7, _interval_s=6 * 60 * 60, _duration_mins=24 * 60, _probes=probes.SEATTLE)
