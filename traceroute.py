@@ -169,7 +169,7 @@ class Measurement:
             print(f"Failed to retrieve measurement results for id {measurement_id}")
             exit(1)
 
-        filename = f"traceroute-{target}-{measurement_id}.json"
+        filename = f"traceroute_data/traceroute-{target}-{measurement_id}.json"
         with open(filename, "w") as file:
             json.dump(response.json(), file)
             print(f"Successfully saved measurement results to {filename}!")
@@ -378,7 +378,7 @@ class Measurement:
     # start measurement for given IP and find a random neighbor. Also update domains.csv.
     def start_dual_measurements(self, row_num, _interval_s, _duration_mins, _probes):
         # extract data from domains.csv
-        df = pd.read_csv("domains.csv", dtype={"msmt_id": str, "neighbor_msmt_id": str})
+        df = pd.read_csv("domains.csv", dtype={"Msmt_ID": str, "Neighbor_Msmt_ID": str})
         row_idx = row_num - 2
         row = df.iloc[row_idx]
         ip = row["IP"]
@@ -389,40 +389,30 @@ class Measurement:
         neighbor_msmt_id = self.create_measurement(neighbor_ip, is_oneoff=False, interval_s=_interval_s, duration_mins=_duration_mins , probes=_probes)
         
         # update domains.csv
-        df.at[row_idx, "msmt_id"] = msmt_id
+        df.at[row_idx, "Msmt_ID"] = msmt_id
         df.at[row_idx, "Neighbor_IP"] = neighbor_ip
-        df.at[row_idx, "neighbor_msmt_id"] = neighbor_msmt_id
+        df.at[row_idx, "Neighbor_Msmt_ID"] = neighbor_msmt_id
         df.to_csv("domains.csv", index=False)
+        
+    def save_traceroute(self, row_num):
+        # extract data from domains.csv
+        df = pd.read_csv("domains.csv", dtype={"Msmt_ID": str, "Neighbor_Msmt_ID": str})
+        row_idx = row_num - 2
+        row = df.iloc[row_idx]
+        msmt_id, neighbor_msmt_id = row["Msmt_ID"], row["Neighbor_Msmt_ID"]
+        target = f'{row["IP"]}_{row["Domain"]}'
+        neighbor_target = row["Neighbor_IP"]
+        
+        self.extract_data_and_report(msmt_id, target)
+        self.extract_data_and_report(neighbor_msmt_id, neighbor_target)
+        
+        
             
 
 if __name__ == "__main__":
     m = Measurement()
-
-    # print(m.create_measurement("chemeketa.edu")) # -> targetand w IP is 15.197.180.139
-    # 15.197.180.1 owned by Amazon: ('16509', 'AMAZON-02, US')
-    # WEST COAST (WA, Seattle)
-    # print(m.create_measurement("15.197.180.139", False, 2 * 60, 20, None))
-    # print(m.create_measurement("15.197.180.1", False, 2 * 60, 20, None))
     
-    
-    # print(m.create_measurement("k12espanola.org")) # -> target IP is 162.159.135.49
-    # WEST COAST (CA, San Francisco)
-    # 162.159.135.49 is k12, 162.159.135.1 is cloudflare: ('13335', 'CLOUDFLARENET, US')
-    # print(m.create_measurement("162.159.135.1", False, 2 * 60, 20, None))
-    # print(m.create_measurement("162.159.135.49", False, 2 * 60, 20, None))
-
-    # For test measurement (3 min interval, 60 mins long, to personal public IP from closeby probes)
-    # print(m.create_measurement(m.get_public_ip(), False, 3 * 60, 60, None))
-    # measurement_id, target = 63359430, "73.219.241.3"
-    # measurement_id, target = 61056514, "google.com"
-    # m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-73.219.241.3-63359430.json")
-    # m.format_measurement(m.create_report_name(measurement_id, target, "csv"), "traceroute-google.com-61056514.json")
-    # m.format_measurement_txt(m.create_report_name(measurement_id, target, "txt"), "traceroute-73.219.241.3-63359430.json")
-    
-    # measurement_id, target = "63729110", "15.197.180.139_(chemeketa.edu)"
-    # measurement_id, target = "63729112", "15.197.180.1_(Amazon)"
-    # measurement_id, target = "63728978", "162.159.135.49_(k12espanola.org)"
-    # measurement_id, target_name = "63728956", "162.159.135.1_(Cloudflare)"
-    # m.extract_data_and_report(measurement_id, target_name)
-    
-    m.start_dual_measurements(7, _interval_s=6 * 60 * 60, _duration_mins=24 * 60, _probes=probes.SEATTLE)
+    # m.start_dual_measurements(7, _interval_s=6 * 60 * 60, _duration_mins=24 * 60, _probes=probes.SEATTLE)
+    for row_num in range(5, 13):
+        if row_num != 10:
+            m.save_traceroute(row_num)

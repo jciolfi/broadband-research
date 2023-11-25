@@ -1,4 +1,4 @@
-Domain,Location,All_IPs,IP,msmt_id,Neighbor_IP,neighbor_msmt_id
+Domain,Location,All_IPs,IP,Msmt_ID,Neighbor_IP,Neighbor_Msmt_ID
 chemeketa.edu,"Seattle, WA, USA",15.197.180.139,15.197.180.139,63729110,15.197.180.1,63729112
 k12espanola.org,"San Francisco, CA, USA","162.159.135.49,162.159.136.49",162.159.135.49,63728978,162.159.135.1,63728956
 lascumbres-nm.org,"New York City, NY, USA","198.49.23.145,198.185.159.145,198.49.23.144,198.185.159.144",198.49.23.145,63814273,198.49.23.20,63814275

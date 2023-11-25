@@ -1,0 +1,473 @@
+Domain,AIN,Type,Town,State,Alex confirmed?,Unnamed: 6,found_about,folder_loc_about,found_faq,folder_loc_faq,found_contact,folder_loc_contact,found,folder_loc
+chemeketa.edu,Chemekta Community College,Higher Education,Salem,OR,,,True,./pages/chemeketa.edu/about_page.txt,False,,True,./pages/chemeketa.edu/contact_page.txt,True,./pages/chemeketa.edu/main_page.txt
+k12espanola.org,EspaÃ±ola Public Schools,Schools,EspaÃ±ola,NM,,,True,./pages/k12espanola.org/about_page.txt,False,,True,./pages/k12espanola.org/contact_page.txt,True,./pages/k12espanola.org/main_page.txt
+lascumbres-nm.org,Las Cumbres Community Services,Community Services,EspaÃ±ola,NM,,,True,./pages/lascumbres-nm.org/about_page.txt,False,,True,./pages/lascumbres-nm.org/contact_page.txt,True,./pages/lascumbres-nm.org/main_page.txt
+missionwestcdp.org,Mission West Community Development Partners (redirects from lakecountycdc.org),Community Services,Ronan,MT,,,True,./pages/missionwestcdp.org/about_page.txt,True,./pages/missionwestcdp.org/faq_page.txt,True,./pages/missionwestcdp.org/contact_page.txt,True,./pages/missionwestcdp.org/main_page.txt
+mcsd10.org,Maine Consolidated School,Schools,Parks,AZ,,,True,./pages/mcsd10.org/about_page.txt,False,,False,,True,./pages/mcsd10.org/main_page.txt
+newmexicoconsortium.org,The New Mexico Consortium (higher ed),Higher Education,Los Alamos,NM,,,True,./pages/newmexicoconsortium.org/about_page.txt,False,,True,./pages/newmexicoconsortium.org/contact_page.txt,True,./pages/newmexicoconsortium.org/main_page.txt
+riversideca.gov,City of Riverside,Government,Riverside,CA,,,True,./pages/riversideca.gov/about_page.txt,False,,True,./pages/riversideca.gov/contact_page.txt,True,./pages/riversideca.gov/main_page.txt
+cityofstjoseph.com,City of St. Joseph,Government,St. Joseph,MN,,,False,,False,,True,./pages/cityofstjoseph.com/contact_page.txt,True,./pages/cityofstjoseph.com/main_page.txt
+define.com,None,,,,,,False,,False,,False,,True,./pages/define.com/main_page.txt
+askcmp.com,None,,,,,,True,./pages/askcmp.com/about_page.txt,False,,True,./pages/askcmp.com/contact_page.txt,True,./pages/askcmp.com/main_page.txt
+backyardenvironments.com,None,,,,,,False,,False,,False,,True,./pages/backyardenvironments.com/main_page.txt
+skipro.com,None,,,,,,True,./pages/skipro.com/about_page.txt,False,,True,./pages/skipro.com/contact_page.txt,True,./pages/skipro.com/main_page.txt
+capitalelec.com,Capital Electric Cooperative,Public Utilities and Energy,Bismarck,ND,,,True,./pages/capitalelec.com/about_page.txt,True,./pages/capitalelec.com/faq_page.txt,False,,True,./pages/capitalelec.com/main_page.txt
+seabear.com,None,,,,,,True,./pages/seabear.com/about_page.txt,True,./pages/seabear.com/faq_page.txt,True,./pages/seabear.com/contact_page.txt,True,./pages/seabear.com/main_page.txt
+highpointnetworks.com,None,,,,,,True,./pages/highpointnetworks.com/about_page.txt,False,,True,./pages/highpointnetworks.com/contact_page.txt,True,./pages/highpointnetworks.com/main_page.txt
+checklistaz.com,None,,,,,,True,./pages/checklistaz.com/about_page.txt,True,./pages/checklistaz.com/faq_page.txt,True,./pages/checklistaz.com/contact_page.txt,True,./pages/checklistaz.com/main_page.txt
+undertone.org,None,,,,,,False,,False,,False,,True,./pages/undertone.org/main_page.txt
+yavapaihumane.org,Yavapai Humane Society,Veterinarians,Prescott,AZ,,,False,,False,,True,./pages/yavapaihumane.org/contact_page.txt,True,./pages/yavapaihumane.org/main_page.txt
+ndgga.com,North Dakota Grain Growers Association,Sectoral Association,West Fargo,ND,,,True,./pages/ndgga.com/about_page.txt,False,,True,./pages/ndgga.com/contact_page.txt,True,./pages/ndgga.com/main_page.txt
+fhgc.com,None,,,,,,True,./pages/fhgc.com/about_page.txt,True,./pages/fhgc.com/faq_page.txt,True,./pages/fhgc.com/contact_page.txt,True,./pages/fhgc.com/main_page.txt
+lakebutlerhospital.com,Lake Butler Hospital,Healthcare,Lake Butler,FL,,,False,,False,,True,./pages/lakebutlerhospital.com/contact_page.txt,True,./pages/lakebutlerhospital.com/main_page.txt
+nothingbutnet.com,None,,,,,,True,./pages/nothingbutnet.com/about_page.txt,False,,True,./pages/nothingbutnet.com/contact_page.txt,True,./pages/nothingbutnet.com/main_page.txt
+nacog.org,Northern Arizona Council of Governments,Government,Flagstaff,AZ,,,True,./pages/nacog.org/about_page.txt,False,,True,./pages/nacog.org/contact_page.txt,True,./pages/nacog.org/main_page.txt
+camelbackwealth.com,None,,,,,,False,,False,,True,./pages/camelbackwealth.com/contact_page.txt,True,./pages/camelbackwealth.com/main_page.txt
+archdiosf.org,Archdiocese of Santa Fe,Religious Organizations,Santa Fe,NM,,,True,./pages/archdiosf.org/about_page.txt,True,./pages/archdiosf.org/faq_page.txt,False,,True,./pages/archdiosf.org/main_page.txt
+accessmontana.com,Access Montana,Regional ISP,Ronan,MT,,,True,./pages/accessmontana.com/about_page.txt,True,./pages/accessmontana.com/faq_page.txt,True,./pages/accessmontana.com/contact_page.txt,True,./pages/accessmontana.com/main_page.txt
+californiatelecom.com,None,,,,,,True,./pages/californiatelecom.com/about_page.txt,False,,True,./pages/californiatelecom.com/contact_page.txt,True,./pages/californiatelecom.com/main_page.txt
+completemarkets.com,None,,,,,,True,./pages/completemarkets.com/about_page.txt,True,./pages/completemarkets.com/faq_page.txt,True,./pages/completemarkets.com/contact_page.txt,True,./pages/completemarkets.com/main_page.txt
+block-lite.com,None,,,,,,True,./pages/block-lite.com/about_page.txt,False,,True,./pages/block-lite.com/contact_page.txt,True,./pages/block-lite.com/main_page.txt
+chemeketa.edu,Chemeketa Community College,Higher Education,Salem,OR,,,True,./pages/chemeketa.edu/about_page.txt,False,,True,./pages/chemeketa.edu/contact_page.txt,True,./pages/chemeketa.edu/main_page.txt
+plexustechnology.com,None,,,,,,True,./pages/plexustechnology.com/about_page.txt,False,,True,./pages/plexustechnology.com/contact_page.txt,True,./pages/plexustechnology.com/main_page.txt
+saultcareercentre.ca,None,,,,,,True,./pages/saultcareercentre.ca/about_page.txt,False,,True,./pages/saultcareercentre.ca/contact_page.txt,True,./pages/saultcareercentre.ca/main_page.txt
+infinitysol.com,None,,,,,,True,./pages/infinitysol.com/about_page.txt,False,,True,./pages/infinitysol.com/contact_page.txt,True,./pages/infinitysol.com/main_page.txt
+mybillingtree.com,None,,,,,,True,./pages/mybillingtree.com/about_page.txt,False,,True,./pages/mybillingtree.com/contact_page.txt,True,./pages/mybillingtree.com/main_page.txt
+classicaccessories.com,None,,,,,,False,,False,,False,,False,
+azraft.com,None,,,,,,True,./pages/azraft.com/about_page.txt,True,./pages/azraft.com/faq_page.txt,True,./pages/azraft.com/contact_page.txt,True,./pages/azraft.com/main_page.txt
+gfrl.org,None,,,,,,True,./pages/gfrl.org/about_page.txt,False,,False,,True,./pages/gfrl.org/main_page.txt
+somosguanacos.com,None,,,,,,False,,False,,False,,True,./pages/somosguanacos.com/main_page.txt
+exoticsracing.com,None,,,,,,True,./pages/exoticsracing.com/about_page.txt,True,./pages/exoticsracing.com/faq_page.txt,True,./pages/exoticsracing.com/contact_page.txt,True,./pages/exoticsracing.com/main_page.txt
+starionbank.com,Starion Bank,Finance and Insurance,[multiple],ND; WI,,,True,./pages/starionbank.com/about_page.txt,True,./pages/starionbank.com/faq_page.txt,True,./pages/starionbank.com/contact_page.txt,True,./pages/starionbank.com/main_page.txt
+skinewmexico.com,None,,,,,,True,./pages/skinewmexico.com/about_page.txt,False,,True,./pages/skinewmexico.com/contact_page.txt,True,./pages/skinewmexico.com/main_page.txt
+hoyrecovery.org,HOY Recovery,Healthcare,Velarde,NM,,,True,./pages/hoyrecovery.org/about_page.txt,False,,True,./pages/hoyrecovery.org/contact_page.txt,True,./pages/hoyrecovery.org/main_page.txt
+weatherfordhotel.com,None,,,,,,True,./pages/weatherfordhotel.com/about_page.txt,False,,True,./pages/weatherfordhotel.com/contact_page.txt,True,./pages/weatherfordhotel.com/main_page.txt
+nau.edu,Northern Arizona University,Higher Education,Flagstaff,AZ,,,True,./pages/nau.edu/about_page.txt,False,,False,,True,./pages/nau.edu/main_page.txt
+azmusicpro.com,None,,,,,,False,,True,./pages/azmusicpro.com/faq_page.txt,False,./pages/azmusicpro.com/contact_page.txt,True,./pages/azmusicpro.com/main_page.txt
+rfcontracting.com,None,,,,,,False,,False,,True,./pages/rfcontracting.com/contact_page.txt,True,./pages/rfcontracting.com/main_page.txt
+wealthpoint.net,None,,,,,,False,,False,,True,./pages/wealthpoint.net/contact_page.txt,True,./pages/wealthpoint.net/main_page.txt
+transcityins.com,None,,,,,,False,,False,,False,,True,./pages/transcityins.com/main_page.txt
+desupply.com,None,,,,,,True,./pages/desupply.com/about_page.txt,False,,True,./pages/desupply.com/contact_page.txt,True,./pages/desupply.com/main_page.txt
+taoscounty.org,Taos County,Government,Taos,NM,,,False,,True,./pages/taoscounty.org/faq_page.txt,True,./pages/taoscounty.org/contact_page.txt,True,./pages/taoscounty.org/main_page.txt
+hotspringsmt.net,None,,,,,,False,,False,,False,,False,
+fibermarketing.com,None,,,,,,True,./pages/fibermarketing.com/about_page.txt,False,,True,./pages/fibermarketing.com/contact_page.txt,True,./pages/fibermarketing.com/main_page.txt
+taosgov.com,Town of Taos,Government,Taos,NM,,,False,,False,,True,./pages/taosgov.com/contact_page.txt,True,./pages/taosgov.com/main_page.txt
+hotelandaluz.com,None,,,,,,False,,False,,False,,True,./pages/hotelandaluz.com/main_page.txt
+pegasusts.com,None,,,,,,True,./pages/pegasusts.com/about_page.txt,False,,True,./pages/pegasusts.com/contact_page.txt,True,./pages/pegasusts.com/main_page.txt
+hirlinger.com,None,,,,,,True,./pages/hirlinger.com/about_page.txt,False,,True,./pages/hirlinger.com/contact_page.txt,True,./pages/hirlinger.com/main_page.txt
+nnogc.com,Navajo Nation Oil and Gas Company,Public Utilities and Energy,St. Michaels,AZ,,,False,,False,,False,,True,./pages/nnogc.com/main_page.txt
+whitehallmgt.com,None,,,,,,True,./pages/whitehallmgt.com/about_page.txt,False,,True,./pages/whitehallmgt.com/contact_page.txt,True,./pages/whitehallmgt.com/main_page.txt
+mrcog-nm.gov,Mid-Region Council of Governments,Government,Albuquerque,NM,,,True,./pages/mrcog-nm.gov/about_page.txt,False,,True,./pages/mrcog-nm.gov/contact_page.txt,True,./pages/mrcog-nm.gov/main_page.txt
+gcyouth.org,Grand Canyon Youth,Community Services,Flagstaff,NM,,,True,./pages/gcyouth.org/about_page.txt,False,,True,./pages/gcyouth.org/contact_page.txt,True,./pages/gcyouth.org/main_page.txt
+smgaz.org,Roman Catholic Church,Religious Organizations,Scottsdale,AZ,,,False,,False,,True,./pages/smgaz.org/contact_page.txt,True,./pages/smgaz.org/main_page.txt
+forethought.net,FORETHOUGHT.net,Regional ISP,Denver,CO,,,False,,False,,False,,True,./pages/forethought.net/main_page.txt
+finkens.com,None,,,,,,True,./pages/finkens.com/about_page.txt,False,,True,./pages/finkens.com/contact_page.txt,True,./pages/finkens.com/main_page.txt
+lawrenceartscenter.org,Lawrence Arts Center,Community Services,Lawrence,KS,,,True,./pages/lawrenceartscenter.org/about_page.txt,False,,False,,True,./pages/lawrenceartscenter.org/main_page.txt
+northlandprep.org,Northland Preparatory Academy,Schools,Flagstaff,AZ,,,True,./pages/northlandprep.org/about_page.txt,True,./pages/northlandprep.org/faq_page.txt,True,./pages/northlandprep.org/contact_page.txt,True,./pages/northlandprep.org/main_page.txt
+bellarri.com,None,,,,,,True,./pages/bellarri.com/about_page.txt,False,,True,./pages/bellarri.com/contact_page.txt,True,./pages/bellarri.com/main_page.txt
+prattdaystratton.com,None,,,,,,False,,False,,True,./pages/prattdaystratton.com/contact_page.txt,True,./pages/prattdaystratton.com/main_page.txt
+curraninc.com,None,,,,,,True,./pages/curraninc.com/about_page.txt,False,,True,./pages/curraninc.com/contact_page.txt,True,./pages/curraninc.com/main_page.txt
+jnlegal.com,None,,,,,,False,,False,,False,,True,./pages/jnlegal.com/main_page.txt
+nationalgroup.ca,None,,,,,,False,,False,,False,,False,
+phxarch.com,None,,,,,,True,./pages/phxarch.com/about_page.txt,False,,True,./pages/phxarch.com/contact_page.txt,True,./pages/phxarch.com/main_page.txt
+pojoaque.org,Pueblo of Pojoaque,Government,Santa Fe,NM,,,False,,False,,True,./pages/pojoaque.org/contact_page.txt,True,./pages/pojoaque.org/main_page.txt
+hipereon.com,None,,,,,,True,./pages/hipereon.com/about_page.txt,False,,True,./pages/hipereon.com/contact_page.txt,True,./pages/hipereon.com/main_page.txt
+fortscott.edu,Fort Scott Community College,Higher Education,Fort Scott,KS,,,True,./pages/fortscott.edu/about_page.txt,False,,False,,True,./pages/fortscott.edu/main_page.txt
+mtco-ops.com,Montana Electric Cooperatives' Association,Public Utilities and Energy,Great Falls,MT,,,True,./pages/mtco-ops.com/about_page.txt,False,,True,./pages/mtco-ops.com/contact_page.txt,True,./pages/mtco-ops.com/main_page.txt
+mrspokane.com,None,,,,,,True,./pages/mrspokane.com/about_page.txt,False,,True,./pages/mrspokane.com/contact_page.txt,True,./pages/mrspokane.com/main_page.txt
+cokerpalmer.com,None,,,,,,True,./pages/cokerpalmer.com/about_page.txt,False,,True,./pages/cokerpalmer.com/contact_page.txt,True,./pages/cokerpalmer.com/main_page.txt
+mvpeds.com,Mountain View Pediatrics,Healthcare,Flagstaff,AZ,,,False,,False,,True,./pages/mvpeds.com/contact_page.txt,True,./pages/mvpeds.com/main_page.txt
+ndarec.com,The North Dakota Association of Rural Electric Cooperatives (NDAREC),Public Utilities and Energy,Mandan,ND,,,False,,False,,True,./pages/ndarec.com/contact_page.txt,True,./pages/ndarec.com/main_page.txt
+soofoundry.ca,None,,,,,,True,./pages/soofoundry.ca/about_page.txt,False,,True,./pages/soofoundry.ca/contact_page.txt,True,./pages/soofoundry.ca/main_page.txt
+rcc.edu,Riverside City College,Higher Education,Riverside,CA,,,True,./pages/rcc.edu/about_page.txt,False,,False,,True,./pages/rcc.edu/main_page.txt
+rayusd.org,Ray Unified School District,Schools,Kearny,AZ,,,False,,False,,True,./pages/rayusd.org/contact_page.txt,True,./pages/rayusd.org/main_page.txt
+midco.com,None,,,,,,True,./pages/midco.com/about_page.txt,False,,True,./pages/midco.com/contact_page.txt,True,./pages/midco.com/main_page.txt
+pointcpa.com,None,,,,,,True,./pages/pointcpa.com/about_page.txt,True,./pages/pointcpa.com/faq_page.txt,True,./pages/pointcpa.com/contact_page.txt,True,./pages/pointcpa.com/main_page.txt
+sunflowerpaving.com,None,,,,,,True,./pages/sunflowerpaving.com/about_page.txt,False,,True,./pages/sunflowerpaving.com/contact_page.txt,True,./pages/sunflowerpaving.com/main_page.txt
+814solutions.com,None,,,,,,False,,False,,True,./pages/814solutions.com/contact_page.txt,True,./pages/814solutions.com/main_page.txt
+shconline.org,Sacred Heart Center,Religious Organizations,Eagle Butte,SD,,,True,./pages/shconline.org/about_page.txt,False,,True,./pages/shconline.org/contact_page.txt,True,./pages/shconline.org/main_page.txt
+hardwick.com,None,,,,,,True,./pages/hardwick.com/about_page.txt,False,,True,./pages/hardwick.com/contact_page.txt,True,./pages/hardwick.com/main_page.txt
+az.gov,State of Arizona,Government,Phoenix,AZ,,,False,,False,,False,,True,./pages/az.gov/main_page.txt
+medical-coding.net,None,,,,,,True,./pages/medical-coding.net/about_page.txt,True,./pages/medical-coding.net/faq_page.txt,True,./pages/medical-coding.net/contact_page.txt,True,./pages/medical-coding.net/main_page.txt
+faithtrustinstitute.org,None,,,,,,True,./pages/faithtrustinstitute.org/about_page.txt,True,./pages/faithtrustinstitute.org/faq_page.txt,True,./pages/faithtrustinstitute.org/contact_page.txt,True,./pages/faithtrustinstitute.org/main_page.txt
+taosnet.com,None,,,,,,True,./pages/taosnet.com/about_page.txt,True,./pages/taosnet.com/faq_page.txt,True,./pages/taosnet.com/contact_page.txt,True,./pages/taosnet.com/main_page.txt
+verendrye.com,Verendrye Electric Cooperative,Public Utilities and Energy,Velva,ND,,,True,./pages/verendrye.com/about_page.txt,False,,True,./pages/verendrye.com/contact_page.txt,True,./pages/verendrye.com/main_page.txt
+pumptechnw.com,None,,,,,,True,./pages/pumptechnw.com/about_page.txt,False,,True,./pages/pumptechnw.com/contact_page.txt,True,./pages/pumptechnw.com/main_page.txt
+bainagency.com,None,,,,,,True,./pages/bainagency.com/about_page.txt,True,./pages/bainagency.com/faq_page.txt,True,./pages/bainagency.com/contact_page.txt,True,./pages/bainagency.com/main_page.txt
+sab-arizona.com,None,,,,,,False,,False,,False,,False,
+faradaypharma.com,None,,,,,,True,./pages/faradaypharma.com/about_page.txt,False,,True,./pages/faradaypharma.com/contact_page.txt,True,./pages/faradaypharma.com/main_page.txt
+spiritlakecasino.com,None,,,,,,True,./pages/spiritlakecasino.com/about_page.txt,False,,False,,True,./pages/spiritlakecasino.com/main_page.txt
+icmsolutions.com,None,,,,,,True,./pages/icmsolutions.com/about_page.txt,False,,True,./pages/icmsolutions.com/contact_page.txt,True,./pages/icmsolutions.com/main_page.txt
+lafco.org,Riverside Local Agency Formation Commission,Government,Riverside,CA,,,True,./pages/lafco.org/about_page.txt,True,./pages/lafco.org/faq_page.txt,False,,True,./pages/lafco.org/main_page.txt
+riversideca.gov,City of Riverside,Government,Riverside,CA,,,True,./pages/riversideca.gov/about_page.txt,False,,True,./pages/riversideca.gov/contact_page.txt,True,./pages/riversideca.gov/main_page.txt
+newmexicocreates.org,None,,,,,,True,./pages/newmexicocreates.org/about_page.txt,False,,False,,True,./pages/newmexicocreates.org/main_page.txt
+azwebdesigns.com,None,,,,,,False,,True,./pages/azwebdesigns.com/faq_page.txt,True,./pages/azwebdesigns.com/contact_page.txt,True,./pages/azwebdesigns.com/main_page.txt
+calbaptist.edu,California Baptist University,Government,Riverside,CA,,,True,./pages/calbaptist.edu/about_page.txt,False,,False,,True,./pages/calbaptist.edu/main_page.txt
+jtscpa.com,None,,,,,,False,,False,,True,./pages/jtscpa.com/contact_page.txt,True,./pages/jtscpa.com/main_page.txt
+dicksonlaw.com,None,,,,,,False,,False,,False,,False,
+wa.gov,State of Washington,Government,Olympia,WA,,,False,,False,,True,./pages/wa.gov/contact_page.txt,True,./pages/wa.gov/main_page.txt
+lotzar.com,None,,,,,,True,./pages/lotzar.com/about_page.txt,False,,True,./pages/lotzar.com/contact_page.txt,True,./pages/lotzar.com/main_page.txt
+matinetworks.net,Mescalero Apache Telecom,Regional ISP,Mescalero,NM,,,True,./pages/matinetworks.net/about_page.txt,False,,True,./pages/matinetworks.net/contact_page.txt,True,./pages/matinetworks.net/main_page.txt
+azactic.gov,Arizona Counter Terrorism Information Center,Government,Phoenix,AZ,,,False,,False,,False,,False,
+herkandassociates.com,None,,,,,,True,./pages/herkandassociates.com/about_page.txt,True,./pages/herkandassociates.com/faq_page.txt,True,./pages/herkandassociates.com/contact_page.txt,True,./pages/herkandassociates.com/main_page.txt
+isabrokers.com,None,,,,,,True,./pages/isabrokers.com/about_page.txt,False,,False,,True,./pages/isabrokers.com/main_page.txt
+skha.org,Salish and Kootenai Housing Authority,Government,Pablo,MT,Yes,,True,./pages/skha.org/about_page.txt,False,,True,./pages/skha.org/contact_page.txt,True,./pages/skha.org/main_page.txt
+rosieonthehouse.com,None,,,,,,True,./pages/rosieonthehouse.com/about_page.txt,False,,True,./pages/rosieonthehouse.com/contact_page.txt,True,./pages/rosieonthehouse.com/main_page.txt
+identikit.net,None,,,,,,False,,True,./pages/identikit.net/faq_page.txt,True,./pages/identikit.net/contact_page.txt,True,./pages/identikit.net/main_page.txt
+mvc.edu,Moreno Valley College,Higher Education,Moreno Valley,CA,Yes,,True,./pages/mvc.edu/about_page.txt,False,,True,./pages/mvc.edu/contact_page.txt,True,./pages/mvc.edu/main_page.txt
+digii.net,None,,,,,,False,,False,,True,./pages/digii.net/contact_page.txt,True,./pages/digii.net/main_page.txt
+siycom.com,Siyeh Communications,Regional ISP,Browning,MT,,,True,./pages/siycom.com/about_page.txt,False,,True,./pages/siycom.com/contact_page.txt,True,./pages/siycom.com/main_page.txt
+mbainsurance.net,None,,,,,,True,./pages/mbainsurance.net/about_page.txt,False,,True,./pages/mbainsurance.net/contact_page.txt,True,./pages/mbainsurance.net/main_page.txt
+lawrencevethospital.com,Lawrence Veterinary Hospital,Veterinarians,Lawrence,KS,,,True,./pages/lawrencevethospital.com/about_page.txt,False,,True,./pages/lawrencevethospital.com/contact_page.txt,True,./pages/lawrencevethospital.com/main_page.txt
+providienmedical.com,None,,,,,,True,./pages/providienmedical.com/about_page.txt,False,,True,./pages/providienmedical.com/contact_page.txt,True,./pages/providienmedical.com/main_page.txt
+northshoresports.ca,None,,,,,,True,./pages/northshoresports.ca/about_page.txt,False,,True,./pages/northshoresports.ca/contact_page.txt,True,./pages/northshoresports.ca/main_page.txt
+dasselaw.com,None,,,,,,False,,False,,False,,True,./pages/dasselaw.com/main_page.txt
+btigate.com,None,,,,,,False,,False,,False,,True,./pages/btigate.com/main_page.txt
+northwestcontracting.com,None,,,,,,True,./pages/northwestcontracting.com/about_page.txt,False,,True,./pages/northwestcontracting.com/contact_page.txt,True,./pages/northwestcontracting.com/main_page.txt
+attitudetoyhaulers.com,None,,,,,,True,./pages/attitudetoyhaulers.com/about_page.txt,False,,True,./pages/attitudetoyhaulers.com/contact_page.txt,True,./pages/attitudetoyhaulers.com/main_page.txt
+ndba.com,North Dakota Bankers Association,Sectoral Association,Bismarck,ND,,,True,./pages/ndba.com/about_page.txt,False,,False,,True,./pages/ndba.com/main_page.txt
+bdec.coop,Burke-Divide Electric Cooperative,Public Utilities and Energy,Columbus,ND,,,True,./pages/bdec.coop/about_page.txt,False,,True,./pages/bdec.coop/contact_page.txt,True,./pages/bdec.coop/main_page.txt
+pacificcoastmanagement.com,None,,,,,,True,./pages/pacificcoastmanagement.com/about_page.txt,False,,True,./pages/pacificcoastmanagement.com/contact_page.txt,True,./pages/pacificcoastmanagement.com/main_page.txt
+vetpressonline.com,None,,,,,,False,,False,,False,,False,
+gracechurchabq.org,Grace Church,Religious Organizations,Albuquerque,NM,,,True,./pages/gracechurchabq.org/about_page.txt,False,,False,,True,./pages/gracechurchabq.org/main_page.txt
+soomill.com,None,,,,,,True,./pages/soomill.com/about_page.txt,False,,True,./pages/soomill.com/contact_page.txt,True,./pages/soomill.com/main_page.txt
+cnanational.com,None,,,,,,True,./pages/cnanational.com/about_page.txt,True,./pages/cnanational.com/faq_page.txt,True,./pages/cnanational.com/contact_page.txt,True,./pages/cnanational.com/main_page.txt
+azlawguy.com,None,,,,,,False,,False,,False,,True,./pages/azlawguy.com/main_page.txt
+autobodyworld.com,None,,,,,,False,,False,,False,,True,./pages/autobodyworld.com/main_page.txt
+wonderfulmercy.org,Wonderful Mercy Church & Prayer Garden,Religious Organizations,Gilbert,AZ,,,True,./pages/wonderfulmercy.org/about_page.txt,False,,True,./pages/wonderfulmercy.org/contact_page.txt,True,./pages/wonderfulmercy.org/main_page.txt
+ssmrca.ca,None,,,,,,True,./pages/ssmrca.ca/about_page.txt,False,,True,./pages/ssmrca.ca/contact_page.txt,True,./pages/ssmrca.ca/main_page.txt
+asmartloan.com,None,,,,,,True,./pages/asmartloan.com/about_page.txt,False,,True,./pages/asmartloan.com/contact_page.txt,True,./pages/asmartloan.com/main_page.txt
+arvig.net,None,,,,,,True,./pages/arvig.net/about_page.txt,True,./pages/arvig.net/faq_page.txt,False,,True,./pages/arvig.net/main_page.txt
+gondtc.com,North Dakota Telephone Company,Regional ISP,Devils Lake,ND,Yes,,True,./pages/gondtc.com/about_page.txt,True,./pages/gondtc.com/faq_page.txt,True,./pages/gondtc.com/contact_page.txt,True,./pages/gondtc.com/main_page.txt
+brownrice.com,None,,,,,,True,./pages/brownrice.com/about_page.txt,True,./pages/brownrice.com/faq_page.txt,True,./pages/brownrice.com/contact_page.txt,True,./pages/brownrice.com/main_page.txt
+kadtec.com,None,,,,,,False,,False,,False,,False,
+centurybaptist.org,Century Baptist Church,Religious Organizations,Bismarck,ND,,,True,./pages/centurybaptist.org/about_page.txt,False,,True,./pages/centurybaptist.org/contact_page.txt,True,./pages/centurybaptist.org/main_page.txt
+kinneyconstruction.net,None,,,,,,True,./pages/kinneyconstruction.net/about_page.txt,False,,True,./pages/kinneyconstruction.net/contact_page.txt,True,./pages/kinneyconstruction.net/main_page.txt
+townofhotsprings.com,None,,,,,,False,,False,,False,,True,./pages/townofhotsprings.com/main_page.txt
+hearingfirst.net,None,,,,,,False,,False,,False,,False,
+sunbeltholdings.com,None,,,,,,True,./pages/sunbeltholdings.com/about_page.txt,False,,True,./pages/sunbeltholdings.com/contact_page.txt,True,./pages/sunbeltholdings.com/main_page.txt
+ew-webb.com,None,,,,,,False,,False,,True,./pages/ew-webb.com/contact_page.txt,True,./pages/ew-webb.com/main_page.txt
+mercermorgan.com,None,,,,,,True,./pages/mercermorgan.com/about_page.txt,False,,False,,True,./pages/mercermorgan.com/main_page.txt
+fbcabq.com,Albuquerque's First Baptist Church,Religious Organizations,Albuquerque,NM,,,False,,False,,False,,True,./pages/fbcabq.com/main_page.txt
+darwintech.com,None,,,,,,False,,False,,False,,True,./pages/darwintech.com/main_page.txt
+phxmetal.com,None,,,,,,False,,False,,False,,False,
+centurylink.net,None,,,,,,False,,False,,False,,True,./pages/centurylink.net/main_page.txt
+metallographic.com,None,,,,,,True,./pages/metallographic.com/about_page.txt,False,,True,./pages/metallographic.com/contact_page.txt,True,./pages/metallographic.com/main_page.txt
+rctech.com,None,,,,,,True,./pages/rctech.com/about_page.txt,False,,True,./pages/rctech.com/contact_page.txt,True,./pages/rctech.com/main_page.txt
+twlewis.com,None,,,,,,True,./pages/twlewis.com/about_page.txt,False,,True,./pages/twlewis.com/contact_page.txt,True,./pages/twlewis.com/main_page.txt
+capinfogroup.com,None,,,,,,True,./pages/capinfogroup.com/about_page.txt,False,,True,./pages/capinfogroup.com/contact_page.txt,True,./pages/capinfogroup.com/main_page.txt
+hitinc.org,"HIT, Inc. (Disability Services)",Healthcare,Mandan,ND,,,True,./pages/hitinc.org/about_page.txt,False,,True,./pages/hitinc.org/contact_page.txt,True,./pages/hitinc.org/main_page.txt
+ndirf.com,"North Dakota
+Insurance Reserve Fund",Finance and Insurance,Bismarck,ND,,,True,./pages/ndirf.com/about_page.txt,True,./pages/ndirf.com/faq_page.txt,True,./pages/ndirf.com/contact_page.txt,True,./pages/ndirf.com/main_page.txt
+centennialplastics.com,None,,,,,,True,./pages/centennialplastics.com/about_page.txt,True,./pages/centennialplastics.com/faq_page.txt,True,./pages/centennialplastics.com/contact_page.txt,True,./pages/centennialplastics.com/main_page.txt
+freshsqueezedwater.com,None,,,,,,True,./pages/freshsqueezedwater.com/about_page.txt,True,./pages/freshsqueezedwater.com/faq_page.txt,True,./pages/freshsqueezedwater.com/contact_page.txt,True,./pages/freshsqueezedwater.com/main_page.txt
+portagemutual.com,None,,,,,,True,./pages/portagemutual.com/about_page.txt,False,,True,./pages/portagemutual.com/contact_page.txt,True,./pages/portagemutual.com/main_page.txt
+vozonline.com,None,,,,,,True,./pages/vozonline.com/about_page.txt,False,,False,,True,./pages/vozonline.com/main_page.txt
+careermedia.com,None,,,,,,False,,False,,False,,False,
+fleetcrew.com,None,,,,,,True,./pages/fleetcrew.com/about_page.txt,True,./pages/fleetcrew.com/faq_page.txt,True,./pages/fleetcrew.com/contact_page.txt,True,./pages/fleetcrew.com/main_page.txt
+acecanada.net,None,,,,,,True,./pages/acecanada.net/about_page.txt,False,,True,./pages/acecanada.net/contact_page.txt,True,./pages/acecanada.net/main_page.txt
+1stnmtitle.com,None,,,,,,True,./pages/1stnmtitle.com/about_page.txt,False,,True,./pages/1stnmtitle.com/contact_page.txt,True,./pages/1stnmtitle.com/main_page.txt
+intelligentinventory.com,None,,,,,,False,,False,,False,,True,./pages/intelligentinventory.com/main_page.txt
+skco.net,None,,,,,,True,./pages/skco.net/about_page.txt,False,,True,./pages/skco.net/contact_page.txt,True,./pages/skco.net/main_page.txt
+scottscooling.com,None,,,,,,True,./pages/scottscooling.com/about_page.txt,False,,False,,True,./pages/scottscooling.com/main_page.txt
+aodbt.com,None,,,,,,True,./pages/aodbt.com/about_page.txt,False,,True,./pages/aodbt.com/contact_page.txt,True,./pages/aodbt.com/main_page.txt
+bagreen.com,None,,,,,,True,./pages/bagreen.com/about_page.txt,False,,True,./pages/bagreen.com/contact_page.txt,True,./pages/bagreen.com/main_page.txt
+oempartsnetwork.com,None,,,,,,False,,False,,False,,True,./pages/oempartsnetwork.com/main_page.txt
+rodpumptracker.com,None,,,,,,False,,False,,False,./pages/rodpumptracker.com/contact_page.txt,True,./pages/rodpumptracker.com/main_page.txt
+southport.ca,None,,,,,,True,./pages/southport.ca/about_page.txt,True,./pages/southport.ca/faq_page.txt,True,./pages/southport.ca/contact_page.txt,True,./pages/southport.ca/main_page.txt
+hoamco.com,None,,,,,,False,,False,,True,./pages/hoamco.com/contact_page.txt,True,./pages/hoamco.com/main_page.txt
+tomhopkins.com,None,,,,,,True,./pages/tomhopkins.com/about_page.txt,False,,True,./pages/tomhopkins.com/contact_page.txt,True,./pages/tomhopkins.com/main_page.txt
+appliedbiologics.com,None,,,,,,True,./pages/appliedbiologics.com/about_page.txt,False,,True,./pages/appliedbiologics.com/contact_page.txt,True,./pages/appliedbiologics.com/main_page.txt
+ssiop.com,None,,,,,,True,./pages/ssiop.com/about_page.txt,False,,True,./pages/ssiop.com/contact_page.txt,True,./pages/ssiop.com/main_page.txt
+enetca.com,None,,,,Yes,,True,./pages/enetca.com/about_page.txt,False,,False,,True,./pages/enetca.com/main_page.txt
+pmspc.org,Pathology Medical Services,Healthcare,Lincoln,NE,,,True,./pages/pmspc.org/about_page.txt,False,,True,./pages/pmspc.org/contact_page.txt,True,./pages/pmspc.org/main_page.txt
+hallandbailey.net,None,,,,,,False,,False,,True,./pages/hallandbailey.net/contact_page.txt,True,./pages/hallandbailey.net/main_page.txt
+crcalgoma.ca,None,,,,,,False,,False,,False,,True,./pages/crcalgoma.ca/main_page.txt
+bmt.bz,None,,,,,,False,,False,,False,,True,./pages/bmt.bz/main_page.txt
+siouxmanufacturing.com,Sioux Manufacturing Corporation,Tribal Companies,Fort Totten,ND,,,True,./pages/siouxmanufacturing.com/about_page.txt,False,,True,./pages/siouxmanufacturing.com/contact_page.txt,True,./pages/siouxmanufacturing.com/main_page.txt
+bigserverhosting.com,None,,,,,,False,,False,,False,,True,./pages/bigserverhosting.com/main_page.txt
+prosecuritycons.com,None,,,,,,False,,False,,False,,True,./pages/prosecuritycons.com/main_page.txt
+danielleashley.com,None,,,,,,False,,False,,False,,True,./pages/danielleashley.com/main_page.txt
+ocsabq.com,None,,,,,,True,./pages/ocsabq.com/about_page.txt,False,,True,./pages/ocsabq.com/contact_page.txt,True,./pages/ocsabq.com/main_page.txt
+csiaz.com,None,,,,,,False,,False,,False,,True,./pages/csiaz.com/main_page.txt
+hillstone.com,None,,,,,,False,,False,,False,,False,
+pinnacleflooring.com,None,,,,,,False,,False,,False,,True,./pages/pinnacleflooring.com/main_page.txt
+stefanizzi.ca,None,,,,,,False,,False,,False,,True,./pages/stefanizzi.ca/main_page.txt
+medbillgroup.com,None,,,,,,False,,False,,True,./pages/medbillgroup.com/contact_page.txt,True,./pages/medbillgroup.com/main_page.txt
+jemezpueblo.net,Jemez Pueblo Tribal Network,Regional ISP,Jemez Pueblo,NM,,,False,,False,,False,,True,./pages/jemezpueblo.net/main_page.txt
+singletone.com,None,,,,,,False,,False,,False,,True,./pages/singletone.com/main_page.txt
+jaguar.net,None,,,,,,False,,False,,False,,True,./pages/jaguar.net/main_page.txt
+eaglerigidspan.com,None,,,,,,False,,False,,True,./pages/eaglerigidspan.com/contact_page.txt,True,./pages/eaglerigidspan.com/main_page.txt
+spininart.com,None,,,,,,False,,False,,False,,True,./pages/spininart.com/main_page.txt
+mtar.net,None,,,,,,False,,False,,False,,True,./pages/mtar.net/main_page.txt
+siamarketing.com,None,,,,,,True,./pages/siamarketing.com/about_page.txt,False,,True,./pages/siamarketing.com/contact_page.txt,True,./pages/siamarketing.com/main_page.txt
+asis-investments.com,None,,,,,,False,,False,,False,,True,./pages/asis-investments.com/main_page.txt
+charkoosta.com,Char-Koosta News,Local Newspaper,Pablo,MT,,,True,./pages/charkoosta.com/about_page.txt,False,,True,./pages/charkoosta.com/contact_page.txt,True,./pages/charkoosta.com/main_page.txt
+yankton.net,Yankton Daily Press & Dakotan,Local Newspaper,Yankton,SD,,,True,./pages/yankton.net/about_page.txt,False,,True,./pages/yankton.net/contact_page.txt,True,./pages/yankton.net/main_page.txt
+canavest.com,None,,,,,,False,,False,,False,,True,./pages/canavest.com/main_page.txt
+chapmanchoice.com,None,,,,,,False,,False,,False,,True,./pages/chapmanchoice.com/main_page.txt
+cla-algoma.org,None,,,,,,False,,False,,False,,False,
+sabatiniarchitects.com,None,,,,,,False,,False,,False,,True,./pages/sabatiniarchitects.com/main_page.txt
+hbacspecialties.com,None,,,,,,False,,False,,False,,True,./pages/hbacspecialties.com/main_page.txt
+nhspokane.com,None,,,,,,True,./pages/nhspokane.com/about_page.txt,True,./pages/nhspokane.com/faq_page.txt,True,./pages/nhspokane.com/contact_page.txt,True,./pages/nhspokane.com/main_page.txt
+tyght.com,None,,,,,,True,./pages/tyght.com/about_page.txt,False,,False,,True,./pages/tyght.com/main_page.txt
+signaturedestinations.com,None,,,,,,False,,False,,False,,False,
+sband.org,State Bar Association of North Dakota,Sectoral Association,Bismarck,ND,,,False,,False,,False,,False,
+lavidge.com,None,,,,,,False,,False,,True,./pages/lavidge.com/contact_page.txt,True,./pages/lavidge.com/main_page.txt
+aesthesia.com,None,,,,,,False,,False,,False,,True,./pages/aesthesia.com/main_page.txt
+hrnetlogin.net,None,,,,,,False,,False,,False,,False,
+carlsoncomputers.com,None,,,,,,False,,False,,False,,False,
+sacred-wind.net,Sacred Wind Communications,Regional ISP,Yatahey,NM,,,True,./pages/sacred-wind.net/about_page.txt,False,,True,./pages/sacred-wind.net/contact_page.txt,True,./pages/sacred-wind.net/main_page.txt
+streetauthority.com,None,,,,,,True,./pages/streetauthority.com/about_page.txt,False,,True,./pages/streetauthority.com/contact_page.txt,True,./pages/streetauthority.com/main_page.txt
+hyderisd.org,Hyder School District (mailserver),Schools,Dateland,AZ,,,False,,False,,False,,False,
+goldwaterlaw.com,None,,,,,,True,./pages/goldwaterlaw.com/about_page.txt,False,,True,./pages/goldwaterlaw.com/contact_page.txt,True,./pages/goldwaterlaw.com/main_page.txt
+smallbiztax.net,None,,,,,,False,,False,,True,./pages/smallbiztax.net/contact_page.txt,True,./pages/smallbiztax.net/main_page.txt
+rainbowtel.net,Rainbow Communications,Regional ISP,Everest,KS,,,True,./pages/rainbowtel.net/about_page.txt,False,,True,./pages/rainbowtel.net/contact_page.txt,True,./pages/rainbowtel.net/main_page.txt
+cap.gov,None,,,,,,True,./pages/cap.gov/about_page.txt,True,./pages/cap.gov/faq_page.txt,True,./pages/cap.gov/contact_page.txt,True,./pages/cap.gov/main_page.txt
+libreems.org,None,,,,,,False,,False,,False,,False,
+nibm.net,None,,,,,,False,,False,,True,./pages/nibm.net/contact_page.txt,True,./pages/nibm.net/main_page.txt
+cabq.gov,City of Albuquerque,Government,Albuquerque,AZ,,,False,,False,,False,,True,./pages/cabq.gov/main_page.txt
+frontiernet.net,None,,,,,,True,./pages/frontiernet.net/about_page.txt,False,,False,,True,./pages/frontiernet.net/main_page.txt
+windstream.net,None,,,,,,False,,False,,False,,True,./pages/windstream.net/main_page.txt
+hspwlaw.com,None,,,,,,True,./pages/hspwlaw.com/about_page.txt,False,,True,./pages/hspwlaw.com/contact_page.txt,True,./pages/hspwlaw.com/main_page.txt
+ffj-arch.com,None,,,,,,False,,False,,True,./pages/ffj-arch.com/contact_page.txt,True,./pages/ffj-arch.com/main_page.txt
+theflagstaffattorney.com,None,,,,,,True,./pages/theflagstaffattorney.com/about_page.txt,False,,True,./pages/theflagstaffattorney.com/contact_page.txt,True,./pages/theflagstaffattorney.com/main_page.txt
+artgalleryofalgoma.com,None,,,,,,True,./pages/artgalleryofalgoma.com/about_page.txt,False,,False,,True,./pages/artgalleryofalgoma.com/main_page.txt
+legacylendingusa.com,None,,,,,,False,,True,./pages/legacylendingusa.com/faq_page.txt,True,./pages/legacylendingusa.com/contact_page.txt,True,./pages/legacylendingusa.com/main_page.txt
+data-man.com,None,,,,,,False,,False,,False,,True,./pages/data-man.com/main_page.txt
+gracebasedfamilies.com,Grace Based Families (redirects from familymatters.net),Religious Organizations,Scottsdale,AZ,,,True,./pages/gracebasedfamilies.com/about_page.txt,False,,True,./pages/gracebasedfamilies.com/contact_page.txt,True,./pages/gracebasedfamilies.com/main_page.txt
+ontariooregon.org,City of Ontario,Government,Ontario,OR,,,True,./pages/ontariooregon.org/about_page.txt,False,,True,./pages/ontariooregon.org/contact_page.txt,True,./pages/ontariooregon.org/main_page.txt
+laserfiche.com,None,,,,,,True,./pages/laserfiche.com/about_page.txt,False,,True,./pages/laserfiche.com/contact_page.txt,True,./pages/laserfiche.com/main_page.txt
+raintreeautobodyinc.com,None,,,,,,False,,False,,True,./pages/raintreeautobodyinc.com/contact_page.txt,True,./pages/raintreeautobodyinc.com/main_page.txt
+topservicelex.com,None,,,,,,True,./pages/topservicelex.com/about_page.txt,False,,True,./pages/topservicelex.com/contact_page.txt,True,./pages/topservicelex.com/main_page.txt
+vofficeglobal.com,None,,,,,,False,,False,,True,./pages/vofficeglobal.com/contact_page.txt,True,./pages/vofficeglobal.com/main_page.txt
+zapplication.org,None,,,,,,True,./pages/zapplication.org/about_page.txt,True,./pages/zapplication.org/faq_page.txt,False,,True,./pages/zapplication.org/main_page.txt
+archivists.org,None,,,,,,True,./pages/archivists.org/about_page.txt,True,./pages/archivists.org/faq_page.txt,True,./pages/archivists.org/contact_page.txt,True,./pages/archivists.org/main_page.txt
+shapespokane.com,None,,,,,,True,./pages/shapespokane.com/about_page.txt,False,,True,./pages/shapespokane.com/contact_page.txt,True,./pages/shapespokane.com/main_page.txt
+duemelands.com,None,,,,,,False,,False,,True,./pages/duemelands.com/contact_page.txt,True,./pages/duemelands.com/main_page.txt
+hatandsons.com,None,,,,,,False,,False,,True,./pages/hatandsons.com/contact_page.txt,True,./pages/hatandsons.com/main_page.txt
+lockersoft.com,None,,,,,,True,./pages/lockersoft.com/about_page.txt,False,,False,,True,./pages/lockersoft.com/main_page.txt
+peakschool.org,The PEAK School,Schools,Flagstaff,AZ,,,False,,False,,False,,False,
+ttsielectric.com,None,,,,,,False,,False,,False,,False,
+colorado.net,None,,,,,,True,./pages/colorado.net/about_page.txt,False,,True,./pages/colorado.net/contact_page.txt,True,./pages/colorado.net/main_page.txt
+iacademy.org,Internet Academy at Truman,Schools,Federal Way,WA,,,True,./pages/iacademy.org/about_page.txt,False,,True,./pages/iacademy.org/contact_page.txt,True,./pages/iacademy.org/main_page.txt
+pbssocal.org,PBS SoCal,Local Newspaper,Costa Mesa,CA,,,True,./pages/pbssocal.org/about_page.txt,False,,True,./pages/pbssocal.org/contact_page.txt,True,./pages/pbssocal.org/main_page.txt
+pioneercu.org,Pioneer Credit Union,Finance and Insurance,Green Bay,WI,,,False,,False,,False,,False,
+whitesrfs.org,Josiah White's,Community Services,Wabash,IN,,,True,./pages/whitesrfs.org/about_page.txt,False,,True,./pages/whitesrfs.org/contact_page.txt,True,./pages/whitesrfs.org/main_page.txt
+charter.com,None,,,,,,True,./pages/charter.com/about_page.txt,False,,True,./pages/charter.com/contact_page.txt,True,./pages/charter.com/main_page.txt
+milgard.com,None,,,,,,True,./pages/milgard.com/about_page.txt,True,./pages/milgard.com/faq_page.txt,True,./pages/milgard.com/contact_page.txt,True,./pages/milgard.com/main_page.txt
+chuppe.com,Chuppe Health,Healthcare,Bismarck,ND,,,True,./pages/chuppe.com/about_page.txt,False,,True,./pages/chuppe.com/contact_page.txt,True,./pages/chuppe.com/main_page.txt
+mijted.net,Mountain Institute,Schools,Prescott,AZ,,,False,,False,,False,,False,
+vianet.ca,None,,,,,,True,./pages/vianet.ca/about_page.txt,False,,True,./pages/vianet.ca/contact_page.txt,True,./pages/vianet.ca/main_page.txt
+lobo.net,None,,,,,,True,./pages/lobo.net/about_page.txt,False,,True,./pages/lobo.net/contact_page.txt,True,./pages/lobo.net/main_page.txt
+holycrossmedicalcenter.org,HolyCross Medical Center (redirects from taoshospital.org),Healthcare,Taos,NM,,,True,./pages/holycrossmedicalcenter.org/about_page.txt,False,,True,./pages/holycrossmedicalcenter.org/contact_page.txt,True,./pages/holycrossmedicalcenter.org/main_page.txt
+natpinc.com,None,,,,,,False,,False,,True,./pages/natpinc.com/contact_page.txt,True,./pages/natpinc.com/main_page.txt
+unm.edu,The University of New Mexico,Higher Education,Albuquerque,NM,,,True,./pages/unm.edu/about_page.txt,False,,True,./pages/unm.edu/contact_page.txt,True,./pages/unm.edu/main_page.txt
+erniesinceresco.com,None,,,,,,False,,False,,False,,True,./pages/erniesinceresco.com/main_page.txt
+ndfa.net,North Dakota Firefighter's Association,Sectoral Association,Bismarck,ND,,,True,./pages/ndfa.net/about_page.txt,False,,False,,True,./pages/ndfa.net/main_page.txt
+tezzaron.com,None,,,,,,False,,False,,False,,False,
+vetsummit.com,None,,,,,,False,,True,./pages/vetsummit.com/faq_page.txt,True,./pages/vetsummit.com/contact_page.txt,True,./pages/vetsummit.com/main_page.txt
+impromed.com,None,,,,,,False,,False,,False,,False,
+ganatrucking.com,None,,,,,,True,./pages/ganatrucking.com/about_page.txt,False,,True,./pages/ganatrucking.com/contact_page.txt,True,./pages/ganatrucking.com/main_page.txt
+lakotanetwork.com,Cheyenne River Sioux Tribe Telephone Authority (mailserver),Regional ISP,Eagle Butte,SD,,,True,./pages/lakotanetwork.com/about_page.txt,False,,True,./pages/lakotanetwork.com/contact_page.txt,True,./pages/lakotanetwork.com/main_page.txt
+ca.gov,State of California,Government,Sacramento,CA,,,False,,False,,True,./pages/ca.gov/contact_page.txt,True,./pages/ca.gov/main_page.txt
+opendns.com,None,,,,,,True,./pages/opendns.com/about_page.txt,False,,False,,True,./pages/opendns.com/main_page.txt
+bleier.net,None,,,,,,False,,False,,False,,True,./pages/bleier.net/main_page.txt
+earthlink.net,None,,,,,,True,./pages/earthlink.net/about_page.txt,False,,True,./pages/earthlink.net/contact_page.txt,True,./pages/earthlink.net/main_page.txt
+tomanengineering.com,None,,,,,,True,./pages/tomanengineering.com/about_page.txt,False,,True,./pages/tomanengineering.com/contact_page.txt,True,./pages/tomanengineering.com/main_page.txt
+raisingarizonakids.com,Raising Arizona Kids,Local Newspaper,Surprise,AZ,,,True,./pages/raisingarizonakids.com/about_page.txt,False,,False,,True,./pages/raisingarizonakids.com/main_page.txt
+flagstaffsurgical.com,Flagstaff Surgical Associates,Healthcare,Flagstaff,AZ,,,True,./pages/flagstaffsurgical.com/about_page.txt,True,./pages/flagstaffsurgical.com/faq_page.txt,True,./pages/flagstaffsurgical.com/contact_page.txt,True,./pages/flagstaffsurgical.com/main_page.txt
+riversidemow.org,Meals on Wheels Riverside,Community Services,Riverside,CA,,,True,./pages/riversidemow.org/about_page.txt,True,./pages/riversidemow.org/faq_page.txt,True,./pages/riversidemow.org/contact_page.txt,True,./pages/riversidemow.org/main_page.txt
+westriver.com,West River Electric Association,Public Utilities and Energy,Rapid City,SD,,,False,,False,,True,./pages/westriver.com/contact_page.txt,True,./pages/westriver.com/main_page.txt
+hbcschool.org,HOTEVLLABACAVI COMMUNITY SCHOOL DISTRICT (mailserver),,Hotevilla,AZ,,,False,,False,,False,,False,
+awdlaw.com,None,,,,,,True,./pages/awdlaw.com/about_page.txt,False,,True,./pages/awdlaw.com/contact_page.txt,True,./pages/awdlaw.com/main_page.txt
+emcaz.com,None,,,,,,False,,False,,True,./pages/emcaz.com/contact_page.txt,True,./pages/emcaz.com/main_page.txt
+ricebrantech.com,None,,,,,,True,./pages/ricebrantech.com/about_page.txt,False,,True,./pages/ricebrantech.com/contact_page.txt,True,./pages/ricebrantech.com/main_page.txt
+southerncomfortmechanical.ca,None,,,,,,False,,False,,True,./pages/southerncomfortmechanical.ca/contact_page.txt,True,./pages/southerncomfortmechanical.ca/main_page.txt
+afjusd.org,Ash Fork JUSD 31,Schools,Ash Fork,AZ,,,False,,False,,False,,True,./pages/afjusd.org/main_page.txt
+avidityhcs.com,None,,,,,,True,./pages/avidityhcs.com/about_page.txt,False,,True,./pages/avidityhcs.com/contact_page.txt,True,./pages/avidityhcs.com/main_page.txt
+businessmanagementdaily.com,None,,,,,,True,./pages/businessmanagementdaily.com/about_page.txt,False,,False,,True,./pages/businessmanagementdaily.com/main_page.txt
+ca5cade.net,None,,,,,,False,,False,,False,,False,
+cap7.com,Community Action Program Region VII,Community Services,Bismarck,ND,,,True,./pages/cap7.com/about_page.txt,False,,True,./pages/cap7.com/contact_page.txt,True,./pages/cap7.com/main_page.txt
+century21morrison.com,None,,,,,,True,./pages/century21morrison.com/about_page.txt,False,,True,./pages/century21morrison.com/contact_page.txt,True,./pages/century21morrison.com/main_page.txt
+cobelaw.com,None,,,,,,True,./pages/cobelaw.com/about_page.txt,False,,True,./pages/cobelaw.com/contact_page.txt,True,./pages/cobelaw.com/main_page.txt
+dakotaadventist.org,The Dakota Conference of Seventh-day Adventists,Religious Organizations,Bismarck,ND,,,True,./pages/dakotaadventist.org/about_page.txt,False,,True,./pages/dakotaadventist.org/contact_page.txt,True,./pages/dakotaadventist.org/main_page.txt
+dawsonkeenan.com,None,,,,,,True,./pages/dawsonkeenan.com/about_page.txt,True,./pages/dawsonkeenan.com/faq_page.txt,True,./pages/dawsonkeenan.com/contact_page.txt,True,./pages/dawsonkeenan.com/main_page.txt
+daymon.com,None,,,,,,True,./pages/daymon.com/about_page.txt,False,,True,./pages/daymon.com/contact_page.txt,True,./pages/daymon.com/main_page.txt
+dotjason.com,None,,,,,,False,,False,,False,,True,./pages/dotjason.com/main_page.txt
+eot-nm.com,None,,,,,,True,./pages/eot-nm.com/about_page.txt,False,,True,./pages/eot-nm.com/contact_page.txt,True,./pages/eot-nm.com/main_page.txt
+finelinetech.ca,None,,,,,,True,./pages/finelinetech.ca/about_page.txt,False,,False,,True,./pages/finelinetech.ca/main_page.txt
+fortgarryhotel.com,None,,,,,,False,,True,./pages/fortgarryhotel.com/faq_page.txt,True,./pages/fortgarryhotel.com/contact_page.txt,True,./pages/fortgarryhotel.com/main_page.txt
+fredsappliances.com,None,,,,,,True,./pages/fredsappliances.com/about_page.txt,False,,False,,True,./pages/fredsappliances.com/main_page.txt
+hollingsworthlaw.com,None,,,,,,False,,False,,True,./pages/hollingsworthlaw.com/contact_page.txt,True,./pages/hollingsworthlaw.com/main_page.txt
+interiorsbyfrance.com,None,,,,,,False,./pages/interiorsbyfrance.com/about_page.txt,False,,False,./pages/interiorsbyfrance.com/contact_page.txt,True,./pages/interiorsbyfrance.com/main_page.txt
+katcommunications.net,None,,,,,,False,,False,,True,./pages/katcommunications.net/contact_page.txt,True,./pages/katcommunications.net/main_page.txt
+legalworkplace.com,None,,,,,,False,,False,,False,,False,
+marybridge.org,Mary Bridge Children's,Healthcare,Tacoma,WA,,,True,./pages/marybridge.org/about_page.txt,False,,True,./pages/marybridge.org/contact_page.txt,True,./pages/marybridge.org/main_page.txt
+mellorlawfirm.com,None,,,,,,True,./pages/mellorlawfirm.com/about_page.txt,False,,True,./pages/mellorlawfirm.com/contact_page.txt,True,./pages/mellorlawfirm.com/main_page.txt
+royalfair.org,None,,,,,,True,./pages/royalfair.org/about_page.txt,False,,True,./pages/royalfair.org/contact_page.txt,True,./pages/royalfair.org/main_page.txt
+stanleyhealth.org,Mountrail County Medical Center,Healthcare,Stanley,ND,,,True,./pages/stanleyhealth.org/about_page.txt,False,,True,./pages/stanleyhealth.org/contact_page.txt,True,./pages/stanleyhealth.org/main_page.txt
+unishippers.com,None,,,,,,True,./pages/unishippers.com/about_page.txt,False,,True,./pages/unishippers.com/contact_page.txt,True,./pages/unishippers.com/main_page.txt
+zayo.com,None,,,,,,False,,False,,False,,False,
+buttecompanies.com,None,,,,,,False,,False,,False,,False,
+marchvisioncare.com,None,,,,,,True,./pages/marchvisioncare.com/about_page.txt,False,,True,./pages/marchvisioncare.com/contact_page.txt,True,./pages/marchvisioncare.com/main_page.txt
+messnerandhadley.com,None,,,,,,True,./pages/messnerandhadley.com/about_page.txt,False,,True,./pages/messnerandhadley.com/contact_page.txt,True,./pages/messnerandhadley.com/main_page.txt
+basinelectric.com,Basin Electric Power Cooperative,Public Utilities and Energy,Bismarck,ND,,,True,./pages/basinelectric.com/about_page.txt,False,,True,./pages/basinelectric.com/contact_page.txt,True,./pages/basinelectric.com/main_page.txt
+norcocollege.edu,Norco College,Higher Education,Norco,CA,,,True,./pages/norcocollege.edu/about_page.txt,True,./pages/norcocollege.edu/faq_page.txt,False,,True,./pages/norcocollege.edu/main_page.txt
+precisenets.com,None,,,,,,True,./pages/precisenets.com/about_page.txt,False,,True,./pages/precisenets.com/contact_page.txt,True,./pages/precisenets.com/main_page.txt
+azhomecare.com,Arizona Home Care,Healthcare,Tempe,AZ,,,True,./pages/azhomecare.com/about_page.txt,False,,False,,True,./pages/azhomecare.com/main_page.txt
+megacorpinc.com,None,,,,,,True,./pages/megacorpinc.com/about_page.txt,True,./pages/megacorpinc.com/faq_page.txt,True,./pages/megacorpinc.com/contact_page.txt,True,./pages/megacorpinc.com/main_page.txt
+designitsolutions.com,None,,,,,,True,./pages/designitsolutions.com/about_page.txt,False,,True,./pages/designitsolutions.com/contact_page.txt,True,./pages/designitsolutions.com/main_page.txt
+eckroth.com,None,,,,,,True,./pages/eckroth.com/about_page.txt,True,./pages/eckroth.com/faq_page.txt,True,./pages/eckroth.com/contact_page.txt,True,./pages/eckroth.com/main_page.txt
+lucidia.com,None,,,,,,False,,False,,False,,True,./pages/lucidia.com/main_page.txt
+qwikvid.com,None,,,,,,True,./pages/qwikvid.com/about_page.txt,True,./pages/qwikvid.com/faq_page.txt,True,./pages/qwikvid.com/contact_page.txt,True,./pages/qwikvid.com/main_page.txt
+sjcounty.net,San Juan County,Government,Aztec,NM,,,True,./pages/sjcounty.net/about_page.txt,False,,True,./pages/sjcounty.net/contact_page.txt,True,./pages/sjcounty.net/main_page.txt
+capcu.org,Capital Credit Union,Finance and Insurance,Bismarck,ND,,,False,,False,,False,,False,
+lakecountyrecycling.com,None,,,,,,False,,False,,False,,False,
+namescape.com,None,,,,,,True,./pages/namescape.com/about_page.txt,True,./pages/namescape.com/faq_page.txt,True,./pages/namescape.com/contact_page.txt,True,./pages/namescape.com/main_page.txt
+rmcards.com,None,,,,,,False,,False,,False,,False,
+teamtorque.com,None,,,,,,True,./pages/teamtorque.com/about_page.txt,True,./pages/teamtorque.com/faq_page.txt,True,./pages/teamtorque.com/contact_page.txt,True,./pages/teamtorque.com/main_page.txt
+uti.edu,Universal Technical Institute (Trade School),Higher Education,Scottsdale,AZ,,,False,,True,./pages/uti.edu/faq_page.txt,True,./pages/uti.edu/contact_page.txt,True,./pages/uti.edu/main_page.txt
+shawcable.net,None,,,,,,True,./pages/shawcable.net/about_page.txt,True,./pages/shawcable.net/faq_page.txt,True,./pages/shawcable.net/contact_page.txt,True,./pages/shawcable.net/main_page.txt
+siriusware.com,None,,,,,,True,./pages/siriusware.com/about_page.txt,False,,True,./pages/siriusware.com/contact_page.txt,True,./pages/siriusware.com/main_page.txt
+nwtire.com,None,,,,,,True,./pages/nwtire.com/about_page.txt,False,,True,./pages/nwtire.com/contact_page.txt,True,./pages/nwtire.com/main_page.txt
+lablinc.com,None,,,,,,False,,False,,False,,True,./pages/lablinc.com/main_page.txt
+preciserotarydie.com,None,,,,,,False,,False,,False,,True,./pages/preciserotarydie.com/main_page.txt
+dcpowerinc.com,None,,,,,,True,./pages/dcpowerinc.com/about_page.txt,True,./pages/dcpowerinc.com/faq_page.txt,True,./pages/dcpowerinc.com/contact_page.txt,True,./pages/dcpowerinc.com/main_page.txt
+puregrips.com,None,,,,,,True,./pages/puregrips.com/about_page.txt,True,./pages/puregrips.com/faq_page.txt,False,,True,./pages/puregrips.com/main_page.txt
+trinaturk.com,None,,,,,,True,./pages/trinaturk.com/about_page.txt,True,./pages/trinaturk.com/faq_page.txt,True,./pages/trinaturk.com/contact_page.txt,True,./pages/trinaturk.com/main_page.txt
+shopmuseum.com,Museum of New Mexico Foundation Shops,Cultural Organizations,Santa Fe,NM,,,True,./pages/shopmuseum.com/about_page.txt,False,,True,./pages/shopmuseum.com/contact_page.txt,True,./pages/shopmuseum.com/main_page.txt
+acsg.com,None,,,,,,False,,False,,False,,True,./pages/acsg.com/main_page.txt
+pmigogreen.com,None,,,,,,True,./pages/pmigogreen.com/about_page.txt,False,,True,./pages/pmigogreen.com/contact_page.txt,True,./pages/pmigogreen.com/main_page.txt
+greatlakeshonda.com,None,,,,,,True,./pages/greatlakeshonda.com/about_page.txt,False,,True,./pages/greatlakeshonda.com/contact_page.txt,True,./pages/greatlakeshonda.com/main_page.txt
+kirkwoodbank.com,None,,,,,,False,,False,,True,./pages/kirkwoodbank.com/contact_page.txt,True,./pages/kirkwoodbank.com/main_page.txt
+profollowup.com,None,,,,,,False,,False,,False,,False,
+cigsecure.com,None,,,,,,False,,False,,False,,False,
+riversideairshow.com,None,,,,,,False,,False,,False,,True,./pages/riversideairshow.com/main_page.txt
+nexusadmin.com,None,,,,,,False,,False,,False,,True,./pages/nexusadmin.com/main_page.txt
+rngmedcons.com,None,,,,,,True,./pages/rngmedcons.com/about_page.txt,False,,False,,True,./pages/rngmedcons.com/main_page.txt
+abslawyer.com,ABS Legal Advocates,Community Services,Lawrence,KS,,,False,,True,./pages/abslawyer.com/faq_page.txt,True,./pages/abslawyer.com/contact_page.txt,True,./pages/abslawyer.com/main_page.txt
+adobedrywall.com,None,,,,,,False,,False,,True,./pages/adobedrywall.com/contact_page.txt,True,./pages/adobedrywall.com/main_page.txt
+agcnd.org,Associated General Contractors of North Dakota,Sectoral Association,Bismarck,ND,,,True,./pages/agcnd.org/about_page.txt,False,,True,./pages/agcnd.org/contact_page.txt,True,./pages/agcnd.org/main_page.txt
+AkmanManagement.ca,None,,,,,,True,./pages/AkmanManagement.ca/about_page.txt,False,,True,./pages/AkmanManagement.ca/contact_page.txt,True,./pages/AkmanManagement.ca/main_page.txt
+americanresidentialproperties.com,Unexamined,,,,,,True,./pages/americanresidentialproperties.com/about_page.txt,False,,True,./pages/americanresidentialproperties.com/contact_page.txt,True,./pages/americanresidentialproperties.com/main_page.txt
+applevalleyanimalhospital.com,Unexamined,,,,,,True,./pages/applevalleyanimalhospital.com/about_page.txt,False,,True,./pages/applevalleyanimalhospital.com/contact_page.txt,True,./pages/applevalleyanimalhospital.com/main_page.txt
+apscops.org,Unexamined,,,,,,False,,False,,True,./pages/apscops.org/contact_page.txt,True,./pages/apscops.org/main_page.txt
+aps.edu,Unexamined,,,,,,True,./pages/aps.edu/about_page.txt,True,./pages/aps.edu/faq_page.txt,True,./pages/aps.edu/contact_page.txt,True,./pages/aps.edu/main_page.txt
+ascendant-financial.com,None,,,,,,True,./pages/ascendant-financial.com/about_page.txt,False,,True,./pages/ascendant-financial.com/contact_page.txt,True,./pages/ascendant-financial.com/main_page.txt
+avamere.com,Avamere Living,Healthcare ,Wilsonville,OR,,,True,./pages/avamere.com/about_page.txt,False,,True,./pages/avamere.com/contact_page.txt,True,./pages/avamere.com/main_page.txt
+avchamber.org,Greater High Desert Chamber of Commerce,Finance and Insurance ,Victorville,CA,,,True,./pages/avchamber.org/about_page.txt,False,,True,./pages/avchamber.org/contact_page.txt,True,./pages/avchamber.org/main_page.txt
+bell.ca,None,,,,,,True,./pages/bell.ca/about_page.txt,False,,True,./pages/bell.ca/contact_page.txt,True,./pages/bell.ca/main_page.txt
+blumenthallawoffices.com,None,,,,,,True,./pages/blumenthallawoffices.com/about_page.txt,False,,True,./pages/blumenthallawoffices.com/contact_page.txt,True,./pages/blumenthallawoffices.com/main_page.txt
+bmellp.com,None,,,,,,False,,False,,True,./pages/bmellp.com/contact_page.txt,True,./pages/bmellp.com/main_page.txt
+bsbcpas.com,Busby Sanford Brady CPAs PLC,Finance and Insurance ,Tucson,AZ,,,False,,False,,True,./pages/bsbcpas.com/contact_page.txt,True,./pages/bsbcpas.com/main_page.txt
+btatax.com,Barnett-Turner & Associates,Professional Services,Anaheim,CA,Yes,"I'd say this qualifies: they're small, locally focused and provide services to anchors",False,,False,,True,./pages/btatax.com/contact_page.txt,True,./pages/btatax.com/main_page.txt
+callforentry.org,None,,,,,,False,,False,,True,./pages/callforentry.org/contact_page.txt,True,./pages/callforentry.org/main_page.txt
+catclinicoflawrence.com,Cat Clinic of Lawrence,Healthcare,Lawrence,KT,,,True,./pages/catclinicoflawrence.com/about_page.txt,False,,True,./pages/catclinicoflawrence.com/contact_page.txt,True,./pages/catclinicoflawrence.com/main_page.txt
+chadsheppard.ca,None,,,,,,True,./pages/chadsheppard.ca/about_page.txt,False,,True,./pages/chadsheppard.ca/contact_page.txt,True,./pages/chadsheppard.ca/main_page.txt
+cityairmechanical.com,None,,,,,,False,,False,,True,./pages/cityairmechanical.com/contact_page.txt,True,./pages/cityairmechanical.com/main_page.txt
+commercialfiltersales.com,None,,,,,,False,,False,,True,./pages/commercialfiltersales.com/contact_page.txt,True,./pages/commercialfiltersales.com/main_page.txt
+conoverlive.com,None,,,,,,False,,False,,False,,False,
+ctxtruck.com,None,,,,,,False,,False,,True,./pages/ctxtruck.com/contact_page.txt,True,./pages/ctxtruck.com/main_page.txt
+cvecfiber.com,None,,,,,,True,./pages/cvecfiber.com/about_page.txt,False,,False,,True,./pages/cvecfiber.com/main_page.txt
+dakotacommunitybank.com,Dakota Community Bank & Trust,Finance and Insurance ,?,ND,,,True,./pages/dakotacommunitybank.com/about_page.txt,False,,True,./pages/dakotacommunitybank.com/contact_page.txt,True,./pages/dakotacommunitybank.com/main_page.txt
+dakotagirlscouts.org,Error,,,,,,False,,False,,False,,True,./pages/dakotagirlscouts.org/main_page.txt
+darcorinc.com,DARcor,Community Services,?,,,,True,./pages/darcorinc.com/about_page.txt,False,,True,./pages/darcorinc.com/contact_page.txt,True,./pages/darcorinc.com/main_page.txt
+dbacks.com,None,,,,,,False,,True,./pages/dbacks.com/faq_page.txt,True,./pages/dbacks.com/contact_page.txt,True,./pages/dbacks.com/main_page.txt
+desertinet.com,None,,,,,,False,,False,,False,,True,./pages/desertinet.com/main_page.txt
+dfgusa.com,None,,,,,,True,./pages/dfgusa.com/about_page.txt,False,,True,./pages/dfgusa.com/contact_page.txt,True,./pages/dfgusa.com/main_page.txt
+digitalskylines.com,None,,,,,,True,./pages/digitalskylines.com/about_page.txt,False,,True,./pages/digitalskylines.com/contact_page.txt,True,./pages/digitalskylines.com/main_page.txt
+distinctivecc.com,None,,,,,,True,./pages/distinctivecc.com/about_page.txt,False,,True,./pages/distinctivecc.com/contact_page.txt,True,./pages/distinctivecc.com/main_page.txt
+dolby.com,None ,,,,,,True,./pages/dolby.com/about_page.txt,False,,False,,True,./pages/dolby.com/main_page.txt
+duffygroup.com,None,,,,,,True,./pages/duffygroup.com/about_page.txt,False,,True,./pages/duffygroup.com/contact_page.txt,True,./pages/duffygroup.com/main_page.txt
+etechservices.com,None,,,,,,True,./pages/etechservices.com/about_page.txt,True,./pages/etechservices.com/faq_page.txt,True,./pages/etechservices.com/contact_page.txt,True,./pages/etechservices.com/main_page.txt
+evergreennaturopathic.com,?,Healthcare,Spokane,WA,Yes,Also yes to this: alternative medicine,True,./pages/evergreennaturopathic.com/about_page.txt,True,./pages/evergreennaturopathic.com/faq_page.txt,True,./pages/evergreennaturopathic.com/contact_page.txt,True,./pages/evergreennaturopathic.com/main_page.txt
+ez15loan.com,None,,,,,,False,,False,,False,,True,./pages/ez15loan.com/main_page.txt
+familyvisionbismarck.com,Family Vision Clinic of Bismarck,Healthcare,Bismarck,ND,,,True,./pages/familyvisionbismarck.com/about_page.txt,False,,True,./pages/familyvisionbismarck.com/contact_page.txt,True,./pages/familyvisionbismarck.com/main_page.txt
+faulkner-fain.com,None,,,,,,False,,False,,False,,False,
+fhusd.org,Fountain Hills Unified School District,Schools,Fountain Hills,AZ,,,True,./pages/fhusd.org/about_page.txt,False,,True,./pages/fhusd.org/contact_page.txt,True,./pages/fhusd.org/main_page.txt
+finscorp.com,None,,,,,,True,./pages/finscorp.com/about_page.txt,False,,False,,True,./pages/finscorp.com/main_page.txt
+flavorfactory.net,None,,,,,,True,./pages/flavorfactory.net/about_page.txt,False,,True,./pages/flavorfactory.net/contact_page.txt,True,./pages/flavorfactory.net/main_page.txt
+fremontbrewing.com,None,,,,,,False,,False,,False,,True,./pages/fremontbrewing.com/main_page.txt
+garlabs.com,GAR Labs,Healthcare,Riverside,CA,,,True,./pages/garlabs.com/about_page.txt,True,./pages/garlabs.com/faq_page.txt,True,./pages/garlabs.com/contact_page.txt,True,./pages/garlabs.com/main_page.txt
+globecor.com,None,,,,,,True,./pages/globecor.com/about_page.txt,False,,True,./pages/globecor.com/contact_page.txt,True,./pages/globecor.com/main_page.txt
+hansonbriggsadvertising.comhansonbriggsadvertising.com,None,,,,,,False,,False,,False,,False,
+hardyboyplant.com,None,,,,,,True,./pages/hardyboyplant.com/about_page.txt,False,,False,,True,./pages/hardyboyplant.com/main_page.txt
+heartlandnutrition.org,Heartland Child Nutrition,Healthcare,Bismarck,ND,,,True,./pages/heartlandnutrition.org/about_page.txt,True,./pages/heartlandnutrition.org/faq_page.txt,True,./pages/heartlandnutrition.org/contact_page.txt,True,./pages/heartlandnutrition.org/main_page.txt
+hobart-wi.org,Village of Hobart,Government ,Hobart,WI,,,False,,True,./pages/hobart-wi.org/faq_page.txt,True,./pages/hobart-wi.org/contact_page.txt,True,./pages/hobart-wi.org/main_page.txt
+htrust.com,Heritage Trust,Community Service ,Taos,NM,,,False,,False,,True,./pages/htrust.com/contact_page.txt,True,./pages/htrust.com/main_page.txt
+hughesgroup.biz,None,,,,,,True,./pages/hughesgroup.biz/about_page.txt,False,,True,./pages/hughesgroup.biz/contact_page.txt,True,./pages/hughesgroup.biz/main_page.txt
+ironwoodic.com,None,,,,,,True,./pages/ironwoodic.com/about_page.txt,False,,True,./pages/ironwoodic.com/contact_page.txt,True,./pages/ironwoodic.com/main_page.txt
+jacksonwhitelaw.com,None,,,,,,True,./pages/jacksonwhitelaw.com/about_page.txt,False,,True,./pages/jacksonwhitelaw.com/contact_page.txt,True,./pages/jacksonwhitelaw.com/main_page.txt
+jobberswarehouse.com,None,,,,,,False,,True,./pages/jobberswarehouse.com/faq_page.txt,True,./pages/jobberswarehouse.com/contact_page.txt,True,./pages/jobberswarehouse.com/main_page.txt
+k12espanola.org,Española Public School District,Schools,Espanola,NM,,,True,./pages/k12espanola.org/about_page.txt,False,,True,./pages/k12espanola.org/contact_page.txt,True,./pages/k12espanola.org/main_page.txt
+kaneenpr.com,None,,,,,,True,./pages/kaneenpr.com/about_page.txt,False,,True,./pages/kaneenpr.com/contact_page.txt,True,./pages/kaneenpr.com/main_page.txt
+kendledesign.com,None,,,,,,True,./pages/kendledesign.com/about_page.txt,False,,True,./pages/kendledesign.com/contact_page.txt,True,./pages/kendledesign.com/main_page.txt
+kershner.com,None,,,,,,False,,False,,False,,True,./pages/kershner.com/main_page.txt
+kfyrtv.com,None,,,,,,True,./pages/kfyrtv.com/about_page.txt,False,,True,./pages/kfyrtv.com/contact_page.txt,True,./pages/kfyrtv.com/main_page.txt
+kiit.com,Khalsa International Industries and Trade,Community Services,Albuquerque,,,,True,./pages/kiit.com/about_page.txt,False,,True,./pages/kiit.com/contact_page.txt,True,./pages/kiit.com/main_page.txt
+krs-law.com,None,,,,,,True,./pages/krs-law.com/about_page.txt,False,,True,./pages/krs-law.com/contact_page.txt,True,./pages/krs-law.com/main_page.txt
+lascumbres-nm.org,"Las Cumbres Community Services, Inc",Community Services,Española,NM,,,True,./pages/lascumbres-nm.org/about_page.txt,False,,True,./pages/lascumbres-nm.org/contact_page.txt,True,./pages/lascumbres-nm.org/main_page.txt
+la-z-boyga.com,None,,,,,,False,,False,,False,,False,
+legendmortgage.com,None,,,,,,False,,False,,True,./pages/legendmortgage.com/contact_page.txt,True,./pages/legendmortgage.com/main_page.txt
+lehmantech.com,None,,,,,,False,,False,,True,./pages/lehmantech.com/contact_page.txt,True,./pages/lehmantech.com/main_page.txt
+liftpartsofca.com,None,,,,,,True,./pages/liftpartsofca.com/about_page.txt,False,,True,./pages/liftpartsofca.com/contact_page.txt,True,./pages/liftpartsofca.com/main_page.txt
+lmh.org,LMH Health,Healthcare,Lawrence,Kansas,,,True,./pages/lmh.org/about_page.txt,False,,True,./pages/lmh.org/contact_page.txt,True,./pages/lmh.org/main_page.txt
+loganlowry.com,None,,,,,,True,./pages/loganlowry.com/about_page.txt,False,,True,./pages/loganlowry.com/contact_page.txt,True,./pages/loganlowry.com/main_page.txt
+lrecok.net,None,,,,,,False,,False,,True,./pages/lrecok.net/contact_page.txt,True,./pages/lrecok.net/main_page.txt
+maricopa.edu,Maricopa Community Colleges,Higher Education,Maricopa County,AZ,,,False,,False,,False,,False,
+mccarthyweston.com,None,,,,,,False,,False,,True,./pages/mccarthyweston.com/contact_page.txt,True,./pages/mccarthyweston.com/main_page.txt
+metricroofing.com,None,,,,,,False,,False,,True,./pages/metricroofing.com/contact_page.txt,True,./pages/metricroofing.com/main_page.txt
+midco.net,None,,,,,,True,./pages/midco.net/about_page.txt,False,,True,./pages/midco.net/contact_page.txt,True,./pages/midco.net/main_page.txt
+mpaa.org,None,?,,,Yes,Not an anchor: trade org representing big corporations,False,,False,,False,,False,
+mrtdesignllc.com,None,,,,,,False,,False,,True,./pages/mrtdesignllc.com/contact_page.txt,True,./pages/mrtdesignllc.com/main_page.txt
+mslcc.com,None,,,,,,False,,False,,False,,True,./pages/mslcc.com/main_page.txt
+multicare.com,MultiCare,Healthcare,Tacoma,WA,Yes,https://www.multicare.org/about-multicare/ - even though its multiple locations they are still in a single area,True,./pages/multicare.com/about_page.txt,False,,True,./pages/multicare.com/contact_page.txt,True,./pages/multicare.com/main_page.txt
+multicare.org,MultiCare,Healthcare,Tacoma,WA,Yes,,True,./pages/multicare.org/about_page.txt,False,,True,./pages/multicare.org/contact_page.txt,True,./pages/multicare.org/main_page.txt
+myentune.com,None,,,,,,False,,False,,False,,False,
+ncswa-nm.org,North Central Solid Waste Authority,Public Utilities and Energy,Española,NM,,,True,./pages/ncswa-nm.org/about_page.txt,False,,True,./pages/ncswa-nm.org/contact_page.txt,True,./pages/ncswa-nm.org/main_page.txt
+newmex.com,None,,,,,,True,./pages/newmex.com/about_page.txt,True,./pages/newmex.com/faq_page.txt,True,./pages/newmex.com/contact_page.txt,True,./pages/newmex.com/main_page.txt
+nmsurf.com,NM Surf,Local ISP,Santa Fe,NM,Yes,Local ISPs qualify,True,./pages/nmsurf.com/about_page.txt,True,./pages/nmsurf.com/faq_page.txt,True,./pages/nmsurf.com/contact_page.txt,True,./pages/nmsurf.com/main_page.txt
+nti-telecom.com,None,?,,,,No: they don't serve consumers,True,./pages/nti-telecom.com/about_page.txt,False,,True,./pages/nti-telecom.com/contact_page.txt,True,./pages/nti-telecom.com/main_page.txt
+oliverelectric.com,None,?,,,,http://www.oliverelectric.com/about/ : they seem locally/community focused and small,True,./pages/oliverelectric.com/about_page.txt,False,,True,./pages/oliverelectric.com/contact_page.txt,True,./pages/oliverelectric.com/main_page.txt
+onebcg.com,None,,,,,,False,,False,,False,,True,./pages/onebcg.com/main_page.txt
+owlinstitute.org,Owl Research Institute,Higher Education,Charlo,MT,,,True,./pages/owlinstitute.org/about_page.txt,True,./pages/owlinstitute.org/faq_page.txt,True,./pages/owlinstitute.org/contact_page.txt,True,./pages/owlinstitute.org/main_page.txt
+pbclaw.com,None,,,,,,False,,False,,True,./pages/pbclaw.com/contact_page.txt,True,./pages/pbclaw.com/main_page.txt
+pctherapist.us,None,,,,,,True,./pages/pctherapist.us/about_page.txt,False,,True,./pages/pctherapist.us/contact_page.txt,True,./pages/pctherapist.us/main_page.txt
+pinalcountyaz.gov,Pinal County,Government,Florence,AZ,,,False,,False,,False,,True,./pages/pinalcountyaz.gov/main_page.txt
+pulseusa.com,None,,,,,,True,./pages/pulseusa.com/about_page.txt,False,,True,./pages/pulseusa.com/contact_page.txt,True,./pages/pulseusa.com/main_page.txt
+redinetnm.org,REDINet Northern New Mexico's Community Broadband Network,Public Utilities and Energy,Espanola,NM,,,True,./pages/redinetnm.org/about_page.txt,True,./pages/redinetnm.org/faq_page.txt,True,./pages/redinetnm.org/contact_page.txt,True,./pages/redinetnm.org/main_page.txt
+rhala.com,None,,,,,,False,,False,,True,./pages/rhala.com/contact_page.txt,True,./pages/rhala.com/main_page.txt
+roselawgroup.com,None,,,,,,True,./pages/roselawgroup.com/about_page.txt,False,,True,./pages/roselawgroup.com/contact_page.txt,True,./pages/roselawgroup.com/main_page.txt
+santafeopera.org,None,,,,,,False,,True,./pages/santafeopera.org/faq_page.txt,True,./pages/santafeopera.org/contact_page.txt,True,./pages/santafeopera.org/main_page.txt
+saultcollege.ca,Sault College,Higher Education,Sault Ste. Marie,ON,,,True,./pages/saultcollege.ca/about_page.txt,True,./pages/saultcollege.ca/faq_page.txt,True,./pages/saultcollege.ca/contact_page.txt,True,./pages/saultcollege.ca/main_page.txt
+saultlawyers.com,None,,,,,,False,,False,,True,./pages/saultlawyers.com/contact_page.txt,True,./pages/saultlawyers.com/main_page.txt
+sayrelawoffices.com,None,,,,,,False,,False,,False,,False,
+scenicspecialties.com,None,,,,,,True,./pages/scenicspecialties.com/about_page.txt,False,,True,./pages/scenicspecialties.com/contact_page.txt,True,./pages/scenicspecialties.com/main_page.txt
+shiseido.com,None,,,,,,True,./pages/shiseido.com/about_page.txt,False,,True,./pages/shiseido.com/contact_page.txt,True,./pages/shiseido.com/main_page.txt
+siliconplains.net,None,,,,,,True,./pages/siliconplains.net/about_page.txt,False,,True,./pages/siliconplains.net/contact_page.txt,True,./pages/siliconplains.net/main_page.txt
+skyspyphotos.com,None,,,,,,True,./pages/skyspyphotos.com/about_page.txt,False,,True,./pages/skyspyphotos.com/contact_page.txt,True,./pages/skyspyphotos.com/main_page.txt
+soolaw.ca,None,,,,,,True,./pages/soolaw.ca/about_page.txt,True,./pages/soolaw.ca/faq_page.txt,True,./pages/soolaw.ca/contact_page.txt,True,./pages/soolaw.ca/main_page.txt
+southvalleyacademy.org,South Valley Academy,Schools,Albuquerque,NM,,,False,,False,,True,./pages/southvalleyacademy.org/contact_page.txt,True,./pages/southvalleyacademy.org/main_page.txt
+sparklight.net,None,,,,,,True,./pages/sparklight.net/about_page.txt,False,,True,./pages/sparklight.net/contact_page.txt,True,./pages/sparklight.net/main_page.txt
+spectrum.com,None,,,,,,True,./pages/spectrum.com/about_page.txt,False,,True,./pages/spectrum.com/contact_page.txt,True,./pages/spectrum.com/main_page.txt
+stemeng.ca,None,,,,,,False,,False,,False,,False,
+stgroup.ca,None,,,,,,False,,False,,False,,False,
+stmonicas.com,St. Monica’s,Community Services,Lincoln,NE,,,True,./pages/stmonicas.com/about_page.txt,False,,True,./pages/stmonicas.com/contact_page.txt,True,./pages/stmonicas.com/main_page.txt
+sundancedentallab.com,Sundance Dental Laboratory,Healthcare,Scottsdale,AZ,,,False,,False,,True,./pages/sundancedentallab.com/contact_page.txt,True,./pages/sundancedentallab.com/main_page.txt
+taoswebb.com,Unexamined,?,,,,"No: I don't think blogs qualify as anchors, even if locally focused",True,./pages/taoswebb.com/about_page.txt,False,,False,,True,./pages/taoswebb.com/main_page.txt
+thehrspecialist.com,None,,,,,,True,./pages/thehrspecialist.com/about_page.txt,False,,True,./pages/thehrspecialist.com/contact_page.txt,True,./pages/thehrspecialist.com/main_page.txt
+themillergroup.net,None,,,,,,True,./pages/themillergroup.net/about_page.txt,False,,True,./pages/themillergroup.net/contact_page.txt,True,./pages/themillergroup.net/main_page.txt
+ubldesign.com,None,,,,,,False,,False,,True,./pages/ubldesign.com/contact_page.txt,True,./pages/ubldesign.com/main_page.txt
+uia.net,None,,,,,,True,./pages/uia.net/about_page.txt,False,,True,./pages/uia.net/contact_page.txt,True,./pages/uia.net/main_page.txt
+vanderloopshoes.com,None,,,,,,True,./pages/vanderloopshoes.com/about_page.txt,False,,True,./pages/vanderloopshoes.com/contact_page.txt,True,./pages/vanderloopshoes.com/main_page.txt
+vtsv.org,The village Taos Ski Valley,Government,Taos Ski Valley,NM,,,True,./pages/vtsv.org/about_page.txt,False,,True,./pages/vtsv.org/contact_page.txt,True,./pages/vtsv.org/main_page.txt
+wapatosd.org,Wapato School District,Schools,Wapato,WA,,,False,,False,,False,,True,./pages/wapatosd.org/main_page.txt
+warrenconwaylaw.com,None,,,,,,False,,False,,False,,True,./pages/warrenconwaylaw.com/main_page.txt
+westaf.org,Western States Arts Federation,Community Services,Denver,Colorado,,,True,./pages/westaf.org/about_page.txt,False,,True,./pages/westaf.org/contact_page.txt,True,./pages/westaf.org/main_page.txt
+westernalliancebancorp.com,Western Alliance Bank,Finance and Insurance ,Phoenix,AZ,,,True,./pages/westernalliancebancorp.com/about_page.txt,False,,True,./pages/westernalliancebancorp.com/contact_page.txt,True,./pages/westernalliancebancorp.com/main_page.txt
+wickedbroadband.com,None,,,,,,True,./pages/wickedbroadband.com/about_page.txt,True,./pages/wickedbroadband.com/faq_page.txt,True,./pages/wickedbroadband.com/contact_page.txt,True,./pages/wickedbroadband.com/main_page.txt
+wishartlaw.com,None,,,,Yes,,True,./pages/wishartlaw.com/about_page.txt,False,,True,./pages/wishartlaw.com/contact_page.txt,True,./pages/wishartlaw.com/main_page.txt
+wrccpa.com,None,,,,,,True,./pages/wrccpa.com/about_page.txt,False,,True,./pages/wrccpa.com/contact_page.txt,True,./pages/wrccpa.com/main_page.txt
+wynflag.com,None,,,,,,True,./pages/wynflag.com/about_page.txt,True,./pages/wynflag.com/faq_page.txt,True,./pages/wynflag.com/contact_page.txt,True,./pages/wynflag.com/main_page.txt
+yanktonsd.com,Unexamined,?,Yankton,SD,Yes,"Ok, this was tricky, but it looks like they're locally focused and driven by mission, for example: https://www.yanktonsd.com/economic-development/workforce-development/",True,./pages/yanktonsd.com/about_page.txt,True,./pages/yanktonsd.com/faq_page.txt,True,./pages/yanktonsd.com/contact_page.txt,True,./pages/yanktonsd.com/main_page.txt
