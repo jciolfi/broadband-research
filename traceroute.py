@@ -15,13 +15,10 @@ import probes
 
 
 """
-TODO
-(in future): add rows/cols for cleaning json -> .csv file
-tool that translates mapping between IPs -> ASNs (bdrmapit)
-IP repeated across many boundaries
 
 launch traceroutes to targets (and other IPs in /24):
-target 2 IPs (one given, one random) and they go through different paths in /24 => model isn't sufficient (prefix-based)
+- target 2 IPs (one given, one random) and they go through different paths in /24 => model isn't sufficient (prefix-based)
+- differences in paths (length, ASNs, etc.), RTT, etc.
 - 
 
 """
@@ -30,7 +27,7 @@ class GeoIP:
         try:
             if ip in cache:
                 return cache[ip]
-            with geoip2.database.Reader("geoip.mmdb") as reader:
+            with geoip2.database.Reader("./other_data/geoip.mmdb") as reader:
                 response = reader.city(ip)
                 country = response.country.name
                 city = response.city.name
