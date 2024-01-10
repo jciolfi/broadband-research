@@ -1,11 +1,9 @@
-import os, requests, json, csv, ipaddress, random
+import os, requests, json, csv, ipaddress
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime
 from dotenv import load_dotenv
 from ipwhois import IPWhois
-from geopy.geocoders import Nominatim
 import geoip2.database
-import probes
 
 class GeoIP:
     def get_location(self, ip, cache):

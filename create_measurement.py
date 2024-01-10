@@ -1,10 +1,7 @@
-import os, requests, json, csv, ipaddress, random
+import os, requests, json, random
 import pandas as pd
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
-from ipwhois import IPWhois
-from geopy.geocoders import Nominatim
-import geoip2.database
 import probes
 
 # BASE_URL = "https://atlas.ripe.net/api/v2"
