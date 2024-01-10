@@ -1,6 +1,14 @@
 import numpy as np
 import pandas as pd
 
+"""
+Things to look for
+- overall path length (number of hops)
+- latency (RTT for each hop, total RTT)
+- hop addresses (are certain addresses used more than others)
+- consistency (are there variations in the paths for different traceroutes)
+- path stability (fluctuations in latency or path changes over time)
+"""
 
 def extract_reports(start, stop):
     df = pd.read_csv("domains.csv", dtype={"Msmt_ID": str, "Neighbor_Msmt_ID": str})
@@ -74,7 +82,7 @@ def analyze(report_path):
         return "\n\n".join(res)
     
     return \
-    f"""        
+    f"""
     avg_hop_rtt: {avg_hop_rtt}
         
     hop_count: {hop_count}
