@@ -1,5 +1,8 @@
+import json
 import numpy as np
 import pandas as pd
+from collections import defaultdict
+
 
 """
 Things to look for
@@ -8,11 +11,17 @@ Things to look for
 - hop addresses (are certain addresses used more than others)
 - consistency (are there variations in the paths for different traceroutes)
 - path stability (fluctuations in latency or path changes over time)
+
+Questions
+- How to handle hops with no data? Ie sometimes hard to draw conclusions if half hops don't have RTT
 """
 
 class MeasurementAnalyzer:
     def __init__(self):
         pass
+    
+    def sort_by_value(self, d, reverse = False):
+        return dict(sorted(d.items(), key=lambda item: item[1], reverse=reverse))
 
     # extract values in row as a tuple from domains.csv from [start_row, stop_row] inclusive
     def extract_reports(self, start, stop):
@@ -43,21 +52,29 @@ class MeasurementAnalyzer:
     def analyze(self, report_path):
         def add_to_paths(cur_paths):
             nonlocal paths
+            wrote_none = True
             for cp in cur_paths:
                 if len(cp) > 0:
-                    paths.append(f"        (hops {len(cp)}): {' -> '.join(cp)}")
+                    paths.append(f"  (hops {len(cp)}): {' -> '.join(cp)}")
+                    wrote_none = False
+            
+            if not wrote_none:
+                paths.append(f"  {'-' * 200}")
             
         
         paths = []
-        hop_rtts = {}
-        hop_count = {}
-        asn_count = {}
+        total_hop_rtts = defaultdict(list)
+        hop_rtts = defaultdict(list)
+        total_hop_count = defaultdict(int)
+        hop_count = defaultdict(int)
+        total_asn_count = defaultdict(int)
         
         df = pd.read_csv(report_path, dtype={"ASN": str, "hop_ip": str, "hop": str})
         cur_paths = [[], [], []]
         for _, row in df.iterrows():
             # break in trace - reset paths
-            if pd.isnull(row["hop"]):
+            hop_num = row["hop"]
+            if pd.isnull(hop_num):
                 add_to_paths(cur_paths)
                 cur_paths = [[], [], []]
                 continue
@@ -66,15 +83,19 @@ class MeasurementAnalyzer:
             pkt_idx = int(row["pkt"]) - 1
             if pkt_idx >= 3:
                 continue
-                
+            
             hop_ip = row["hop_ip"]
             rtt = row["RTT"]
             if isinstance(hop_ip, str):
-                hop_count[hop_ip] = hop_count.get(hop_ip, 0) + 1
-                if hop_ip in hop_rtts:
-                    hop_rtts[hop_ip].append(rtt)
-                else:
-                    hop_rtts[hop_ip] = [rtt]
+                # hop_key = (hop_ip, int(hop_num))
+                hop_num_str = "{:2}".format(hop_num)
+                hop_key = f"{hop_num_str} hops | {hop_ip}"
+                
+                total_hop_count[hop_ip] += 1
+                hop_count[hop_key] += 1
+                
+                total_hop_rtts[hop_ip].append(rtt)
+                hop_rtts[hop_key].append(rtt)
             else:
                 hop_ip = "*"
             
@@ -83,33 +104,56 @@ class MeasurementAnalyzer:
             
             asn = row["ASN"]
             if isinstance(asn, str):
-                asn_count[asn] = asn_count.get(asn, 0) + 1
+                total_asn_count[asn] += 1
         
+        total_avg_hop_rtt = {}
+        for hop, rtts in total_hop_rtts.items():
+            total_avg_hop_rtt[hop] = np.round(np.mean(rtts), decimals = 5)
+            
         avg_hop_rtt = {}
         for hop, rtts in hop_rtts.items():
             avg_hop_rtt[hop] = np.round(np.mean(rtts), decimals = 5)
         
         paths_str = "\n\n".join(paths)
         
-        return \
-        f"""
-        avg_hop_rtt: {avg_hop_rtt}
-            
-        hop_count: {hop_count}
-            
-        asn_count: {asn_count}
+        # sort by value
+        total_avg_hop_rtt = self.sort_by_value(total_avg_hop_rtt)
+        avg_hop_rtt = self.sort_by_value(avg_hop_rtt)
+        total_hop_count = self.sort_by_value(total_hop_count, True)
+        hop_count = self.sort_by_value(hop_count, True)
+        total_asn_count = self.sort_by_value(total_asn_count, True)
         
-        paths:
-{paths_str}
-        """
+        return  f"total_avg_hop_rtt: {json.dumps(total_avg_hop_rtt, indent=2)}\n\n" + \
+                f"avg_hop_rtt: {json.dumps(avg_hop_rtt, indent=2)}\n\n" + \
+                f"total_hop_count: {json.dumps(total_hop_count, indent=2)}\n\n" + \
+                f"hop_count: {json.dumps(hop_count, indent=2)}\n\n" + \
+                f"total_asn_count: {json.dumps(total_asn_count, indent=2)}\n\n" + \
+                f"paths:\n  {'-' * 200}\n\n{paths_str}\n"
+                
+#         return \
+#         f"""
+#     total_avg_hop_rtt: {json.dumps(total_avg_hop_rtt, indent=6)}
+    
+#     avg_hop_rtt: {json.dumps(avg_hop_rtt, indent=6)}
+            
+#     total_hop_count: {json.dumps(total_hop_count, indent=6)}
+    
+#     hop_count: {json.dumps(hop_count, indent=6)}
+            
+#     total_asn_count: {json.dumps(total_asn_count, indent=6)}
+        
+#     paths:
+    
+# {paths_str}
+#         """
 
 
     # create analysis reports for [start_row, stop_row] inclusive based on domains.csv
     def bulk_analyze(self, start_row, stop_row):
         for row_num, domain, target_report, nbr_report in self.extract_reports(start_row, stop_row):
             with open(f"./analyses/{row_num}-{domain}.txt", "w") as file:
-                file.write(f"{target_report}:\n{self.analyze(target_report)}\n")
-                file.write(f"{'-' * 200}\n\n")
+                file.write(f"{target_report}:\n\n{self.analyze(target_report)}\n")
+                file.write(f"{'=' * 202}\n\n")
                 file.write(f"{nbr_report}:\n{self.analyze(nbr_report)}")
 
 
