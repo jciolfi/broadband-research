@@ -135,7 +135,7 @@ class MeasurementImporter:
                             writer.writerow([hop, pkt + 1, ip_src, ip_dst] + self.extract_hop_info(hop_info, ip_asn_cache, ip_loc_cache, geoip))
                                 
                     # write extra row for spacing between traceroutes
-                    writer.writerow([" "])
+                    writer.writerow([""] * 15)
                     
     
     # create .txt report for a measurement report with human-readable formatting
@@ -218,18 +218,26 @@ class MeasurementImporter:
         df = pd.read_csv("domains.csv", dtype={"Msmt_ID": str, "Neighbor_Msmt_ID": str})
         row_idx = row_num - 2
         row = df.iloc[row_idx]
+        
+        if any(row.isna()):
+            print(f"Row {row_num} contains empty values. Skipping...")
+            return
+        
         msmt_id, neighbor_msmt_id = row["Msmt_ID"], row["Neighbor_Msmt_ID"]
         target = f'{row["IP"]}_{row["Domain"]}'
         neighbor_target = row["Neighbor_IP"]
         
         self.extract_data_and_report(msmt_id, target)
         self.extract_data_and_report(neighbor_msmt_id, neighbor_target)
+        
+    
+    # save traceroute reports for rows in domains.csv from [start, stop] inclusive
+    def save_traceroutes(self, start, stop):
+        for row_num in range(start, stop + 1):
+            self.save_traceroute(row_num)
 
 
 if __name__ == "__main__":
     m = MeasurementImporter()
-    
-    for row_num in range(12, 13):
-        if row_num != 10:
-            m.save_traceroute(row_num)
+    m.save_traceroutes(2, 12)
     

@@ -41,6 +41,13 @@ class MeasurementAnalyzer:
     - map of ASN: times visited
     """
     def analyze(self, report_path):
+        def add_to_paths(cur_paths):
+            nonlocal paths
+            for cp in cur_paths:
+                if len(cp) > 0:
+                    paths.append(f"        (hops {len(cp)}): {' -> '.join(cp)}")
+            
+        
         paths = []
         hop_rtts = {}
         hop_count = {}
@@ -50,9 +57,8 @@ class MeasurementAnalyzer:
         cur_paths = [[], [], []]
         for _, row in df.iterrows():
             # break in trace - reset paths
-            if not row["hop"].isdigit():
-                for cp in cur_paths:
-                    paths.append(" -> ".join(cp))
+            if pd.isnull(row["hop"]):
+                add_to_paths(cur_paths)
                 cur_paths = [[], [], []]
                 continue
             
@@ -78,20 +84,12 @@ class MeasurementAnalyzer:
             asn = row["ASN"]
             if isinstance(asn, str):
                 asn_count[asn] = asn_count.get(asn, 0) + 1
-            
-        for cp in cur_paths:
-            paths.append(" -> ".join(cp))
-            
+        
         avg_hop_rtt = {}
         for hop, rtts in hop_rtts.items():
             avg_hop_rtt[hop] = np.round(np.mean(rtts), decimals = 5)
         
-        # add path length and tab
-        def format_paths(paths):
-            res = []
-            for path in paths:
-                res.append(f"        (length {len(path)}): {path}")
-            return "\n\n".join(res)
+        paths_str = "\n\n".join(paths)
         
         return \
         f"""
@@ -102,7 +100,7 @@ class MeasurementAnalyzer:
         asn_count: {asn_count}
         
         paths:
-{format_paths(paths)}
+{paths_str}
         """
 
 
