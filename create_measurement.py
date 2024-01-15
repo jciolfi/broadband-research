@@ -30,6 +30,7 @@ class MeasurementLauncher:
 
         # extract API keys from env
         load_dotenv()
+        self.bill_to = os.getenv("BILL_TO")
         self.api_key_create = os.getenv("API_KEY_CREATE")
         self.api_key_stop = os.getenv("API_KEY_STOP")
         if not self.api_key_create and not self.api_key_stop:
@@ -100,7 +101,7 @@ class MeasurementLauncher:
 
         # set billing and if measurement is ongoing/one-off
         params["is_oneoff"] = is_oneoff
-        params["bill_to"] = "ciolfi.j@northeastern.edu"
+        params["bill_to"] = self.bill_to
         if not is_oneoff:            
             params["definitions"][0]["interval"] = interval_s if interval_s else 900 # 900 is the default interval
             params["start_time"] = self.get_cur_timef(2)
@@ -114,7 +115,7 @@ class MeasurementLauncher:
     
     # confirm starting a measurement
     def confirm_measurement(self, params):
-        choice = input(f"\nStart measurement with the following params?\n{params}\n\n(yes/no):").strip().lower()
+        choice = input(f"\nStart measurement with the following params?\n{json.dumps(params, indent=2)}\n\n(yes/no): ").strip().lower()
         return choice in ("yes", "y")
     
     
@@ -130,13 +131,14 @@ class MeasurementLauncher:
             return None
         
         try:
-            print(f"Success: measurement created:\n{response.json()}")
+            print(f"Success: measurement created:\n{response.json()}\n")
             return response.json()[self.measurements][0]
         except:
             return None
 
 
     # make put request to stop an ongoing measurement
+    # NOTE: this is not tested very extensively - can also force stop a measurement through ripe atlas website.
     def stop_measurement(self, measurement_id):
         stop_url = f"{self.base_url}/{self.measurements}/{measurement_id}"
 
@@ -153,15 +155,19 @@ class MeasurementLauncher:
             print(f"Failed to stop measurement {measurement_id}. Response: {response.text}")
         else:
             print(f"Successfully stopped measurement {measurement_id}!")                 
-       
+    
+    
     # bulk launch one-off traceroutes for domains in domains.csv from [start_row, end_row] inclusive
     # only launch if IP is blank (nan)
     def bulk_one_off(self, start_row, end_row):
-        num_domains = end_row - start_row
-        df = pd.read_csv("domains.csv", skiprows=range(1, start_row), nrows=num_domains)
-        for _, row in df.iterrows():
+        num_domains = end_row - start_row + 1
+        df = pd.read_csv("domains.csv", skiprows=range(1, start_row - 1), nrows=num_domains)
+        for i, row in df.iterrows():
             if pd.isna(row["IP"]):
-                m.create_measurement(row["Domain"], probe=probes.SINGLE_BOSTON)
+                print(f"Launching one-off for row {start_row + i} ({row['Domain']})...")
+                m.create_measurement(row["Domain"], probes=probes.SINGLE_BOSTON)
+            else:
+                print(f"Row {start_row + i} ({row['Domain']}) already has an associated IP. Skipping...")
     
     
     # get neighbor ip in same /24 range
@@ -177,7 +183,7 @@ class MeasurementLauncher:
     # start measurement for given IP and find a random neighbor. Also update domains.csv.
     def start_dual_measurements(self, row_num, _interval_s, _duration_mins, _probes):
         # extract data from domains.csv
-        df = pd.read_csv("domains.csv", dtype={"Msmt_ID": str, "Neighbor_Msmt_ID": str})
+        df = pd.read_csv("domains.csv", dtype={"Msmt_ID": str, "Neighbor_Msmt_ID": str, "IP": str})
         row_idx = row_num - 2
         row = df.iloc[row_idx]
         ip = row["IP"]
@@ -192,13 +198,11 @@ class MeasurementLauncher:
         df.at[row_idx, "Neighbor_IP"] = neighbor_ip
         df.at[row_idx, "Neighbor_Msmt_ID"] = neighbor_msmt_id
         df.to_csv("domains.csv", index=False)
-    
-    
-    
-        
-        
             
 
 if __name__ == "__main__":
     m = MeasurementLauncher()
-    m.start_dual_measurements(1, 6 * 60 * 60, 24 * 60, probes.BOSTON)
+    # m.bulk_one_off(13, 15)
+    # m.start_dual_measurements(13, 6 * 60 * 60, 25 * 60, probes.SAN_FRANCISCO)
+    # m.start_dual_measurements(14, 6 * 60 * 60, 25 * 60, probes.BOSTON)
+    # m.start_dual_measurements(15, 6 * 60 * 60, 25 * 60, probes.SEATTLE)

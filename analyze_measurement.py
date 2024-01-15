@@ -114,7 +114,7 @@ class MeasurementAnalyzer:
         for hop, rtts in hop_rtts.items():
             avg_hop_rtt[hop] = np.round(np.mean(rtts), decimals = 5)
         
-        paths_str = "\n\n".join(paths)
+        paths_str = "\n".join(paths)
         
         # sort by value
         total_avg_hop_rtt = self.sort_by_value(total_avg_hop_rtt)
@@ -123,12 +123,12 @@ class MeasurementAnalyzer:
         hop_count = self.sort_by_value(hop_count, True)
         total_asn_count = self.sort_by_value(total_asn_count, True)
         
-        return  f"total_avg_hop_rtt: {json.dumps(total_avg_hop_rtt, indent=2)}\n\n" + \
+        return  f"paths:\n  {'-' * 200}\n{paths_str}\n\n" + \
+                f"total_avg_hop_rtt: {json.dumps(total_avg_hop_rtt, indent=2)}\n\n" + \
                 f"avg_hop_rtt: {json.dumps(avg_hop_rtt, indent=2)}\n\n" + \
                 f"total_hop_count: {json.dumps(total_hop_count, indent=2)}\n\n" + \
                 f"hop_count: {json.dumps(hop_count, indent=2)}\n\n" + \
-                f"total_asn_count: {json.dumps(total_asn_count, indent=2)}\n\n" + \
-                f"paths:\n  {'-' * 200}\n\n{paths_str}\n"
+                f"total_asn_count: {json.dumps(total_asn_count, indent=2)}"
                 
 #         return \
 #         f"""
@@ -151,10 +151,12 @@ class MeasurementAnalyzer:
     # create analysis reports for [start_row, stop_row] inclusive based on domains.csv
     def bulk_analyze(self, start_row, stop_row):
         for row_num, domain, target_report, nbr_report in self.extract_reports(start_row, stop_row):
-            with open(f"./analyses/{row_num}-{domain}.txt", "w") as file:
+            analysis_path = f"./analyses/{row_num}-{domain}"
+            with open(f"{analysis_path}.txt", "w") as file:
                 file.write(f"{target_report}:\n\n{self.analyze(target_report)}\n")
-                file.write(f"{'=' * 202}\n\n")
-                file.write(f"{nbr_report}:\n{self.analyze(nbr_report)}")
+            with open(f"{analysis_path}-complement.txt", "w") as file:
+                file.write(f"{nbr_report}:\n\n{self.analyze(nbr_report)}\n")
+                
 
 
 

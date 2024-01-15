@@ -51,6 +51,7 @@ class MeasurementImporter:
                 return test_filename
             version += 1
     
+    
     # check if this ip is in the reserved private IP ranges.
     def is_private_ip(self, ip):
         _ip = ipaddress.ip_address(ip)
@@ -60,6 +61,7 @@ class MeasurementImporter:
             ipaddress.ip_network("192.168.0.0/16")
         )
         return any(_ip in priv_range for priv_range in private_ranges)
+    
     
     # try to get ASN associated with this IP
     def asn_from_ip(self, ip, cache):
@@ -76,6 +78,7 @@ class MeasurementImporter:
             print(f"Could not find ASN for {ip}: {e}")
         
         return asn, asn_desc
+    
     
     # extract hop info from a traceroute hop object
     def extract_hop_info(self, hop_info, ip_asn_cache, ip_loc_cache, geoip):
@@ -108,6 +111,7 @@ class MeasurementImporter:
             return [hop_ip, asn, asn_desc, loc, rtt, ttl, size, itos, icmp_ver, icmp_rfc4884, icmp_obj]
         except KeyError:
             return []
+    
     
     # format raw json measurement details to a more readable csv format
     def format_measurement_csv(self, output_file, data_path):
