@@ -5,12 +5,16 @@ from dotenv import load_dotenv
 from ipwhois import IPWhois
 import geoip2.database
 
+# TODO: better pattern to keep the cache in here than in the MeasurementImporter class
 class GeoIP:
+    
+    # perform IP -> location lookup
     def get_location(self, ip, cache):
         try:
             if ip in cache:
                 return cache[ip]
             with geoip2.database.Reader("./other_data/geoip.mmdb") as reader:
+                # get location as "city, subdivs, country"
                 response = reader.city(ip)
                 country = response.country.name
                 city = response.city.name
@@ -63,7 +67,7 @@ class MeasurementImporter:
         return any(_ip in priv_range for priv_range in private_ranges)
     
     
-    # try to get ASN associated with this IP
+    # try to get ASN associated with this IP using the IPWhois library
     def asn_from_ip(self, ip, cache):
         asn, asn_desc = "", ""
         try:
@@ -194,6 +198,7 @@ class MeasurementImporter:
             print("Must specify measurement_id")
             exit(1)
 
+        # request measurement ID data from RIPE Atlas API
         response = requests.get(f"{self.base_url}/{self.measurements}/{measurement_id}/results", headers=self.create_headers)
         
         if response.status_code != 200:
@@ -231,6 +236,7 @@ class MeasurementImporter:
         target = f'{row["IP"]}_{row["Domain"]}'
         neighbor_target = row["Neighbor_IP"]
         
+        # extract for domain and neighbor
         self.extract_data_and_report(msmt_id, target)
         self.extract_data_and_report(neighbor_msmt_id, neighbor_target)
         

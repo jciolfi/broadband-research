@@ -20,8 +20,10 @@ class MeasurementAnalyzer:
     def __init__(self):
         pass
     
+    # return dictionary sorted by value
     def sort_by_value(self, d, reverse = False):
         return dict(sorted(d.items(), key=lambda item: item[1], reverse=reverse))
+
 
     # extract values in row as a tuple from domains.csv from [start_row, stop_row] inclusive
     def extract_reports(self, start, stop):
@@ -29,10 +31,13 @@ class MeasurementAnalyzer:
         reports = []
         for i in range(start - 2, stop - 1):
             row = df.iloc[i]
+            
             if any(row.isna()):
                 print(f'warning: row {i + 2} ({row["Domain"]}) contains empty values. Skipping...')
                 continue
             
+            # extract domain, build target report and neighbor report file paths
+            # NOTE: minimal error handling here if filepaths don't exist
             domain = row["Domain"]
             ip, msmt_id = row["IP"], row["Msmt_ID"]
             nbr_ip, nbr_msmt_id = row["Neighbor_IP"], row["Neighbor_Msmt_ID"]
@@ -50,6 +55,8 @@ class MeasurementAnalyzer:
     - map of ASN: times visited
     """
     def analyze(self, report_path):
+        
+        # add current path joined by arrows to nonlocal paths list
         def add_to_paths(cur_paths):
             nonlocal paths
             wrote_none = True
@@ -72,18 +79,20 @@ class MeasurementAnalyzer:
         df = pd.read_csv(report_path, dtype={"ASN": str, "hop_ip": str, "hop": str})
         cur_paths = [[], [], []]
         for _, row in df.iterrows():
-            # break in trace - reset paths
             hop_num = row["hop"]
+            
+            # break in trace - reset paths
             if pd.isnull(hop_num):
                 add_to_paths(cur_paths)
                 cur_paths = [[], [], []]
                 continue
             
-            # hardcoded check - change if not 3 packets per hop.
+            # ! hardcoded check - change if not 3 packets per hop.
             pkt_idx = int(row["pkt"]) - 1
             if pkt_idx >= 3:
                 continue
             
+            # extract hop data from current row
             hop_ip = row["hop_ip"]
             rtt = row["RTT"]
             if isinstance(hop_ip, str):
@@ -99,20 +108,21 @@ class MeasurementAnalyzer:
             else:
                 hop_ip = "*"
             
-            # if hop_ip != "*" or cur_paths[pkt_idx][-1] != "*":
             cur_paths[pkt_idx].append(hop_ip)
             
             asn = row["ASN"]
             if isinstance(asn, str):
                 total_asn_count[asn] += 1
         
+        # get average hop RTT for each hop IP
         total_avg_hop_rtt = {}
         for hop, rtts in total_hop_rtts.items():
             total_avg_hop_rtt[hop] = np.round(np.mean(rtts), decimals = 5)
-            
+        
+        # get average hop RTT for each (hop IP, num hops from source)
         avg_hop_rtt = {}
-        for hop, rtts in hop_rtts.items():
-            avg_hop_rtt[hop] = np.round(np.mean(rtts), decimals = 5)
+        for hop_key, rtts in hop_rtts.items():
+            avg_hop_rtt[hop_key] = np.round(np.mean(rtts), decimals = 5)
         
         paths_str = "\n".join(paths)
         
@@ -129,23 +139,6 @@ class MeasurementAnalyzer:
                 f"total_hop_count: {json.dumps(total_hop_count, indent=2)}\n\n" + \
                 f"hop_count: {json.dumps(hop_count, indent=2)}\n\n" + \
                 f"total_asn_count: {json.dumps(total_asn_count, indent=2)}"
-                
-#         return \
-#         f"""
-#     total_avg_hop_rtt: {json.dumps(total_avg_hop_rtt, indent=6)}
-    
-#     avg_hop_rtt: {json.dumps(avg_hop_rtt, indent=6)}
-            
-#     total_hop_count: {json.dumps(total_hop_count, indent=6)}
-    
-#     hop_count: {json.dumps(hop_count, indent=6)}
-            
-#     total_asn_count: {json.dumps(total_asn_count, indent=6)}
-        
-#     paths:
-    
-# {paths_str}
-#         """
 
 
     # create analysis reports for [start_row, stop_row] inclusive based on domains.csv

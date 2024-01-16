@@ -125,11 +125,13 @@ class MeasurementLauncher:
         if not self.confirm_measurement(measurement_params):
             return None
 
+        # launch measurement if confirmed
         response = requests.post(f"{self.base_url}/{self.measurements}", headers=self.create_headers, data=json.dumps(measurement_params))
         if response.status_code != 201:
             print(f"Warning: status {response.status_code} received:\n{response.json()}")
             return None
         
+        # return response from server with measurement ID 
         try:
             print(f"Success: measurement created:\n{response.json()}\n")
             return response.json()[self.measurements][0]
@@ -174,6 +176,8 @@ class MeasurementLauncher:
     def get_neighbor_ip_24(self, ip):
         last_octet = ip.rfind(".")
         last_val = int(ip[last_octet+1:])
+        
+        # choose random last octet
         while (rand_val := random.randint(1,254)) == last_val:
             pass
         
