@@ -5,14 +5,17 @@ from dotenv import load_dotenv
 from ipwhois import IPWhois
 import geoip2.database
 
-# TODO: better pattern to keep the cache in here than in the MeasurementImporter class
+
 class GeoIP:
+    def __init__(self):
+        self.ip_asn_cache = {}
+        self.ip_loc_cache = {}
     
     # perform IP -> location lookup
-    def get_location(self, ip, cache):
+    def ip2loc(self, ip):
         try:
-            if ip in cache:
-                return cache[ip]
+            if ip in self.ip_loc_cache:
+                return self.ip_loc_cache[ip]
             with geoip2.database.Reader("./other_data/geoip.mmdb") as reader:
                 # get location as "city, subdivs, country"
                 response = reader.city(ip)
@@ -20,16 +23,36 @@ class GeoIP:
                 city = response.city.name
                 subdivs = ", ".join(map(lambda x: x.name, response.subdivisions))
                 location = ", ".join((city, subdivs, country))
-                cache[ip] = location
+                self.ip_loc_cache[ip] = location
                 return location
         except:
             return ""
+    
+    
+    # try to get ASN associated with this IP using the IPWhois library
+    def ip2asn(self, ip):
+        asn, asn_desc = "", ""
+        try:
+            if ip in self.ip_asn_cache:
+                asn, asn_desc = self.ip_asn_cache[ip]
+            else:
+                _ipwhois = IPWhois(ip)
+                asn_data = _ipwhois.lookup_rdap()
+                asn, asn_desc = asn_data["asn"], asn_data["asn_description"]
+                self.ip_asn_cache[ip] = (asn, asn_desc)
+        except Exception as e:
+            print(f"Could not find ASN for {ip}: {e}")
+        
+        return asn, asn_desc
+        
+    
 
 
 class MeasurementImporter:
     def __init__(self):
         self.base_url = "https://atlas.ripe.net/api/v2"
         self.measurements = "measurements"
+        self.geoip = GeoIP()
         
         load_dotenv()
         self.api_key_create = os.getenv("API_KEY_CREATE")
@@ -65,34 +88,17 @@ class MeasurementImporter:
             ipaddress.ip_network("192.168.0.0/16")
         )
         return any(_ip in priv_range for priv_range in private_ranges)
-    
-    
-    # try to get ASN associated with this IP using the IPWhois library
-    def asn_from_ip(self, ip, cache):
-        asn, asn_desc = "", ""
-        try:
-            if ip in cache:
-                asn, asn_desc = cache[ip]
-            else:
-                _ipwhois = IPWhois(ip)
-                asn_data = _ipwhois.lookup_rdap()
-                asn, asn_desc = asn_data["asn"], asn_data["asn_description"]
-                cache[ip] = (asn, asn_desc)
-        except Exception as e:
-            print(f"Could not find ASN for {ip}: {e}")
         
-        return asn, asn_desc
-    
     
     # extract hop info from a traceroute hop object
-    def extract_hop_info(self, hop_info, ip_asn_cache, ip_loc_cache, geoip):
+    def extract_hop_info(self, hop_info):
         try:
             # hop IP and ASN info
             hop_ip = hop_info["from"]
             asn = asn_desc = loc = ""
             if not self.is_private_ip(hop_ip):
-                asn, asn_desc = self.asn_from_ip(hop_ip, ip_asn_cache)
-                loc = geoip.get_location(hop_ip, ip_loc_cache)                               
+                asn, asn_desc = self.geoip.ip2asn(hop_ip)
+                loc = self.geoip.ip2loc(hop_ip)
             
             # other properties
             ttl = hop_info["ttl"]
@@ -118,11 +124,7 @@ class MeasurementImporter:
     
     
     # format raw json measurement details to a more readable csv format
-    def format_measurement_csv(self, output_file, data_path):
-        ip_asn_cache = {}
-        ip_loc_cache = {}
-        geoip = GeoIP()
-        
+    def format_measurement_csv(self, output_file, data_path):        
         with open(output_file, "w") as out_file:
             writer = csv.writer(out_file)
             # write header for flattened traceroute json data
@@ -140,7 +142,7 @@ class MeasurementImporter:
                         
                         # get hop info for this hop
                         for pkt, hop_info in enumerate(hop_data["result"]):
-                            writer.writerow([hop, pkt + 1, ip_src, ip_dst] + self.extract_hop_info(hop_info, ip_asn_cache, ip_loc_cache, geoip))
+                            writer.writerow([hop, pkt + 1, ip_src, ip_dst] + self.extract_hop_info(hop_info))
                                 
                     # write extra row for spacing between traceroutes
                     writer.writerow([""] * 15)
@@ -249,5 +251,5 @@ class MeasurementImporter:
 
 if __name__ == "__main__":
     m = MeasurementImporter()
-    m.save_traceroutes(2, 12)
+    m.save_traceroutes(13, 15)
     
