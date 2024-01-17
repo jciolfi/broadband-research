@@ -21,3 +21,10 @@ Analyzing is also simpler like importing - just specify the rows you'd like to g
 ## ip2as
 Instead of IPWhois, [ip2as](https://alexmarder.github.io/ip2as/) from [bdrmapit](https://alexmarder.github.io/bdrmapit/) was used with the following command: ip2as -p rib.prefixes -R rels-file -c cone-file -a as2org -P peeringdb.json -o ip2as.prefixes.
 
+Below are links to download the required files:
+- rib.prefixes: https://publicdata.caida.org/datasets/routing/routeviews-prefix2as/
+- rels-file: https://data.caida.org/datasets/as-organizations/
+- cone-file: https://data.caida.org/datasets/as-organizations/
+- as2org: https://data.caida.org/datasets/as-organizations/
+- peeringdb.json: https://data.caida.org/datasets/peeringdb-v2/
+- ip2as.prefixes: the output file.
