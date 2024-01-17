@@ -149,10 +149,6 @@ class MeasurementAnalyzer:
                 file.write(f"{target_report}:\n\n{self.analyze(target_report)}\n")
             with open(f"{analysis_path}-complement.txt", "w") as file:
                 file.write(f"{nbr_report}:\n\n{self.analyze(nbr_report)}\n")
-                
-
-
-
 
 
 if __name__ == "__main__":

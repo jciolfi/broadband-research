@@ -28,3 +28,5 @@ Below are links to download the required files:
 - as2org: https://data.caida.org/datasets/as-organizations/
 - peeringdb.json: https://data.caida.org/datasets/peeringdb-v2/
 - ip2as.prefixes: the output file.
+
+This should be kept up to date in line with when each of the above files has a new release for the most accurate results.

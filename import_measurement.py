@@ -1,4 +1,4 @@
-import os, requests, json, csv, ipaddress
+import os, requests, json, csv, ipaddress, radix
 import pandas as pd
 from datetime import datetime
 from dotenv import load_dotenv
@@ -10,6 +10,32 @@ class GeoIP:
     def __init__(self):
         self.ip_asn_cache = {}
         self.ip_loc_cache = {}
+        self.load_ip2as_prefixes("ip2as.prefixes")
+        
+    # load in prefix to ASN mapping from bdrmapit (generated via the ip2as package: https://alexmarder.github.io/ip2as/)
+    # note this file is large: 20+ MB without extracting origins for RIR extended delegation files. Willingly take memory tradeoff for performance here.
+    def load_ip2as_prefixes(self, filepath):
+        # build a prefix tree of the ip ranges to efficiently lookup corresponding ASN
+        self.rtree = radix.Radix()
+        
+        print(f"Loading from {filepath}...")
+        with open(filepath, "r") as file:
+            for line in file:
+                # extract prefix and asn from file and add as node to prefix tree
+                prefix, asn = line.strip().split(" ")
+                node = self.rtree.add(prefix)
+                node.data["asn"] = asn
+            
+        print("Done!\n")
+        
+    
+    # try to get ASN associated with this IP using the ip2as module and prefix tree.
+    def ip2asn_bdrmapit(self, ip):
+        node = self.rtree.search_best(ip)
+        if node:
+            return node.data["asn"]
+        return ""
+    
     
     # perform IP -> location lookup
     def ip2loc(self, ip):
@@ -30,7 +56,7 @@ class GeoIP:
     
     
     # try to get ASN associated with this IP using the IPWhois library
-    def ip2asn(self, ip):
+    def ip2asn_ipwhois(self, ip):
         asn, asn_desc = "", ""
         try:
             if ip in self.ip_asn_cache:
@@ -44,8 +70,6 @@ class GeoIP:
             print(f"Could not find ASN for {ip}: {e}")
         
         return asn, asn_desc
-        
-    
 
 
 class MeasurementImporter:
@@ -95,9 +119,10 @@ class MeasurementImporter:
         try:
             # hop IP and ASN info
             hop_ip = hop_info["from"]
-            asn = asn_desc = loc = ""
+            asn_bdrmapit = asn_ipwhois = asn_desc = loc = ""
             if not self.is_private_ip(hop_ip):
-                asn, asn_desc = self.geoip.ip2asn(hop_ip)
+                asn_bdrmapit = self.geoip.ip2asn_bdrmapit(hop_ip)
+                asn_ipwhois, asn_desc = self.geoip.ip2asn_ipwhois(hop_ip)
                 loc = self.geoip.ip2loc(hop_ip)
             
             # other properties
@@ -118,7 +143,7 @@ class MeasurementImporter:
                 icmp_rfc4884 = icmpext["rfc4884"]
                 icmp_obj = icmpext["obj"]
                 
-            return [hop_ip, asn, asn_desc, loc, rtt, ttl, size, itos, icmp_ver, icmp_rfc4884, icmp_obj]
+            return [hop_ip, asn_bdrmapit, asn_ipwhois, asn_desc, loc, rtt, ttl, size, itos, icmp_ver, icmp_rfc4884, icmp_obj]
         except KeyError:
             return []
     
@@ -128,7 +153,7 @@ class MeasurementImporter:
         with open(output_file, "w") as out_file:
             writer = csv.writer(out_file)
             # write header for flattened traceroute json data
-            writer.writerow(["hop", "pkt", "ip_src", "ip_dst", "hop_ip", "ASN", "ASN_desc", "loc", "RTT", "TTL", "size", "itos", "icmp_ver", "icmp_rfc4884", "icmp_obj"])
+            writer.writerow(["hop", "pkt", "ip_src", "ip_dst", "hop_ip", "ASN_bdrmapit", "ASN_IPWhois", "ASN_desc", "loc", "RTT", "TTL", "size", "itos", "icmp_ver", "icmp_rfc4884", "icmp_obj"])
             with open(data_path, "r") as in_file:
                 traceroutes = json.load(in_file)
                 for traceroute in traceroutes:
@@ -191,7 +216,7 @@ class MeasurementImporter:
         else:
             raise NotImplementedError(f"No formatting implementation for {filetype} files exists.")
 
-        print(f"Report saved to {output_file}!")
+        print(f"Report saved to {output_file}!\n")
     
     
     # save measurement data to json
@@ -251,5 +276,5 @@ class MeasurementImporter:
 
 if __name__ == "__main__":
     m = MeasurementImporter()
-    m.save_traceroutes(13, 15)
-    
+    m.save_traceroutes(2, 15)
+    # test = GeoIP()
