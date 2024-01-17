@@ -17,3 +17,7 @@ Importing is much simpler than launching. Just specify which rows you'd like to 
 ## Analyzing Traceroute Data
 
 Analyzing is also simpler like importing - just specify the rows you'd like to generate an analysis report for. These will show up in the `analyses` folder.
+
+## ip2as
+Instead of IPWhois, [ip2as](https://alexmarder.github.io/ip2as/) from [bdrmapit](https://alexmarder.github.io/bdrmapit/) was used with the following command: ip2as -p rib.prefixes -R rels-file -c cone-file -a as2org -P peeringdb.json -o ip2as.prefixes.
+

@@ -2,3 +2,4 @@ geoip.mmdb filter=lfs diff=lfs merge=lfs -text
 output_IP_dns_from_kichos_file.csv filter=lfs diff=lfs merge=lfs -text
 *.csv filter=lfs diff=lfs merge=lfs -text
 traceroute-*.json filter=lfs diff=lfs merge=lfs -text
+ip2as.prefixes filter=lfs diff=lfs merge=lfs -text
