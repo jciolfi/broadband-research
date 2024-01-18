@@ -1,4 +1,4 @@
-import json
+import json, os
 import numpy as np
 import pandas as pd
 from collections import defaultdict
@@ -33,7 +33,7 @@ class MeasurementAnalyzer:
             row = df.iloc[i]
             
             if any(row.isna()):
-                print(f'warning: row {i + 2} ({row["Domain"]}) contains empty values. Skipping...')
+                print(f"Warning: row {i + 2} ({row['Domain']}) contains empty values. Skipping...")
                 continue
             
             # extract domain, build target report and neighbor report file paths
@@ -74,9 +74,10 @@ class MeasurementAnalyzer:
         hop_rtts = defaultdict(list)
         total_hop_count = defaultdict(int)
         hop_count = defaultdict(int)
-        total_asn_count = defaultdict(int)
+        total_asn_count_ipwhois = defaultdict(int)
+        total_asn_count_bdrmapit = defaultdict(int)
         
-        df = pd.read_csv(report_path, dtype={"ASN": str, "hop_ip": str, "hop": str})
+        df = pd.read_csv(report_path, dtype={"asn_bdrmapit": str, "asn_ipwhois": str, "hop_ip": str, "hop": str})
         cur_paths = [[], [], []]
         for _, row in df.iterrows():
             hop_num = row["hop"]
@@ -94,7 +95,7 @@ class MeasurementAnalyzer:
             
             # extract hop data from current row
             hop_ip = row["hop_ip"]
-            rtt = row["RTT"]
+            rtt = row["rtt"]
             if isinstance(hop_ip, str):
                 # hop_key = (hop_ip, int(hop_num))
                 hop_num_str = "{:2}".format(hop_num)
@@ -110,9 +111,14 @@ class MeasurementAnalyzer:
             
             cur_paths[pkt_idx].append(hop_ip)
             
-            asn = row["ASN"]
-            if isinstance(asn, str):
-                total_asn_count[asn] += 1
+            asn_ipwhois = row["asn_ipwhois"]
+            if not pd.isna(asn_ipwhois):
+                total_asn_count_ipwhois[asn_ipwhois] += 1
+                
+            asn_bdrmapit = row["asn_bdrmapit"]
+            if not pd.isna(asn_bdrmapit):
+                total_asn_count_bdrmapit[asn_bdrmapit] += 1
+            
         
         # get average hop RTT for each hop IP
         total_avg_hop_rtt = {}
@@ -131,26 +137,44 @@ class MeasurementAnalyzer:
         avg_hop_rtt = self.sort_by_value(avg_hop_rtt)
         total_hop_count = self.sort_by_value(total_hop_count, True)
         hop_count = self.sort_by_value(hop_count, True)
-        total_asn_count = self.sort_by_value(total_asn_count, True)
+        total_asn_count_ipwhois = self.sort_by_value(total_asn_count_ipwhois, True)
+        total_asn_count_bdrmapit = self.sort_by_value(total_asn_count_bdrmapit, True)
         
         return  f"paths:\n  {'-' * 200}\n{paths_str}\n\n" + \
                 f"total_avg_hop_rtt: {json.dumps(total_avg_hop_rtt, indent=2)}\n\n" + \
                 f"avg_hop_rtt: {json.dumps(avg_hop_rtt, indent=2)}\n\n" + \
                 f"total_hop_count: {json.dumps(total_hop_count, indent=2)}\n\n" + \
                 f"hop_count: {json.dumps(hop_count, indent=2)}\n\n" + \
-                f"total_asn_count: {json.dumps(total_asn_count, indent=2)}"
+                f"total_asn_count_ipwhois: {json.dumps(total_asn_count_ipwhois, indent=2)}\n\n" + \
+                f"total_asn_count_bdrmapit: {json.dumps(total_asn_count_bdrmapit, indent=2)}"
 
+
+    # create a name for the analysis that doesn't already exist
+    def create_analysis_name(self, filename):
+        if not os.path.exists(f"{filename}.txt"):
+            return f"{filename}.txt"
+        
+        version = 2
+        while os.path.exists(f"{filename}-{version}.txt"):
+            version += 1
+        
+        return f"{filename}-{version}.txt"
+        
 
     # create analysis reports for [start_row, stop_row] inclusive based on domains.csv
     def bulk_analyze(self, start_row, stop_row):
         for row_num, domain, target_report, nbr_report in self.extract_reports(start_row, stop_row):
-            analysis_path = f"./analyses/{row_num}-{domain}"
-            with open(f"{analysis_path}.txt", "w") as file:
+            base_filename = f"./analyses/{row_num}-{domain}"
+            
+            domain_filename = self.create_analysis_name(base_filename)
+            with open(domain_filename, "w") as file:
                 file.write(f"{target_report}:\n\n{self.analyze(target_report)}\n")
-            with open(f"{analysis_path}-complement.txt", "w") as file:
+                
+            complement_filename = self.create_analysis_name(f"{base_filename}-complement")
+            with open(complement_filename, "w") as file:
                 file.write(f"{nbr_report}:\n\n{self.analyze(nbr_report)}\n")
 
 
 if __name__ == "__main__":
     ma = MeasurementAnalyzer()
-    ma.bulk_analyze(2, 12)
+    ma.bulk_analyze(2, 15)

@@ -153,7 +153,7 @@ class MeasurementImporter:
         with open(output_file, "w") as out_file:
             writer = csv.writer(out_file)
             # write header for flattened traceroute json data
-            writer.writerow(["hop", "pkt", "ip_src", "ip_dst", "hop_ip", "ASN_bdrmapit", "ASN_IPWhois", "ASN_desc", "loc", "RTT", "TTL", "size", "itos", "icmp_ver", "icmp_rfc4884", "icmp_obj"])
+            writer.writerow(["hop", "pkt", "ip_src", "ip_dst", "hop_ip", "asn_bdrmapit", "asn_ipwhois", "asn_ipwhois_desc", "loc", "rtt", "ttl", "size", "itos", "icmp_ver", "icmp_rfc4884", "icmp_obj"])
             with open(data_path, "r") as in_file:
                 traceroutes = json.load(in_file)
                 for traceroute in traceroutes:
@@ -256,7 +256,7 @@ class MeasurementImporter:
         row = df.iloc[row_idx]
         
         if any(row.isna()):
-            print(f"Row {row_num} contains empty values. Skipping...")
+            print(f"Warning: row {row_num} contains empty values. Skipping...\n")
             return
         
         msmt_id, neighbor_msmt_id = row["Msmt_ID"], row["Neighbor_Msmt_ID"]

@@ -359,7 +359,14 @@ hop_count: {
   "16 hops | 52.46.164.28": 3
 }
 
-total_asn_count: {
+total_asn_count_ipwhois: {
+  "6079": 54,
+  "111": 42
+}
+
+total_asn_count_bdrmapit: {
+  "10578": 90,
+  "11537": 90,
   "6079": 54,
   "111": 42
 }

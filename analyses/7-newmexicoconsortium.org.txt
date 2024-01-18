@@ -109,8 +109,16 @@ hop_count: {
   "4  hops | 10.66.1.245": 3
 }
 
-total_asn_count: {
+total_asn_count_ipwhois: {
   "396982": 36,
+  "20473": 12,
+  "36692": 12
+}
+
+total_asn_count_bdrmapit: {
+  "396982": 36,
+  "-113": 24,
+  "-1": 12,
   "20473": 12,
   "36692": 12
 }
