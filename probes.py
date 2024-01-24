@@ -7,7 +7,7 @@
 SINGLE_BOSTON = [{
     "type": "probes",
     "value": "6899",
-    "requested": 3
+    "requested": 1
 }]
 BOSTON = [{
     "type": "probes",

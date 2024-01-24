@@ -4,23 +4,8 @@ from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import probes
 
-# BASE_URL = "https://atlas.ripe.net/api/v2"
-# MEASUREMENTS = "measurements"
-# API_KEY = None
-# TARGET = "google.com"
-# TARGET_ASN = "15169"
-
 # TODO: publish code with Northeastern license (NEU intellectual property)
-
-"""
-
-launch traceroutes to targets (and other IPs in /24):
-- target 2 IPs (one given, one random) and they go through different paths in /24 => model isn't sufficient (prefix-based)
-- differences in paths (length, ASNs, etc.), RTT, etc.
-- 
-
-"""
-        
+# go to other Choffnes students and find github and see license
 
 class MeasurementLauncher:
     def __init__(self):
@@ -202,6 +187,13 @@ class MeasurementLauncher:
         df.at[row_idx, "Neighbor_IP"] = neighbor_ip
         df.at[row_idx, "Neighbor_Msmt_ID"] = neighbor_msmt_id
         df.to_csv("domains.csv", index=False)
+        
+    
+    # bulk start dual measurements from start_row to stop_row inclusive
+    def bulk_start_dual_measurements(self, start_row, stop_row, _interval_s, _duration_mins, _probes):
+        for row_num in range(start_row, stop_row + 1):
+            self.start_dual_measurements(row_num, _interval_s, _duration_mins, _probes)
+        
             
 
 if __name__ == "__main__":

@@ -1,5 +1,7 @@
 # Traceroute Launcher via RIPE Atlas
 
+This code was developed at Northeastern University.
+
 The following code provides utility for creating a traceroute measurement, importing traceroute measurement data, and an automated analysis for imported data. For convenience, domain info is held in domains.csv, which contains domains, their associated IP(s), a neighboring IP (one that is in the same /24 subnet), and RIPE Atlas measurement IDs for launched traceroutes. The goal of this code is to streamline the process to determine if two IPs in the same /24 subnet have differing physical paths. For all functions, the start row and stop row are inclusive.
 
 ## Launching a Traceroute
